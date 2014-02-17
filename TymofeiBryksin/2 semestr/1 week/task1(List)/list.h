@@ -22,14 +22,11 @@ public:
     void show();
 
     ListElement *Head() const;
-
     ListElement *Last() const;
 
 private:
     ListElement *head;
     ListElement *last;
-
-
     int size;
 };
 
