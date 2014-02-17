@@ -1,0 +1,42 @@
+#include <iostream>
+#include <cstdio>
+#include <algorithm>
+#include <limits.h>
+using namespace std;
+
+void printPartition(int summand,int sum, int (&used)[1000], int ideal)
+{
+
+    if (sum == ideal)
+    {
+        for (int summandI = 1; summandI < summand; summandI++)
+            cout << used[summandI] << (summandI == summand - 1 ? "" :"+");
+        cout<<endl;
+        return;
+    }
+
+    if (sum > ideal)
+        return;
+
+    for (int i = 1; i <= ideal; i++)
+    {
+
+        if (i <= used[summand - 1])
+        {
+            used[summand] = i;
+            printPartition(summand + 1,sum + i, used, ideal);
+        }
+    }
+}
+int main()
+{
+    int used[1000];
+    int n = 0;
+    used[0] = INT_MAX;
+    cout << "Partition\n\n\nInput N: ";
+    cin >> n;
+    cout << "Answer: \n";
+    printPartition(1, 0, used, n);
+
+    return 0;
+}

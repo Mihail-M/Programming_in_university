@@ -1,0 +1,43 @@
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+using namespace std;
+int find(string s, string substr) {
+    for (int i = 0; i < s.size(); i++) {
+        bool b = true;
+        for (int j = 0; j < substr.size(); j++){
+            if(s[i + j] != substr[j])
+                b = false;
+        }
+        if (b)
+            return i;
+    }
+    return -1;
+
+int main()
+{
+    ifstream in("1.txt");
+    
+    string s;
+    int balance = 0;
+
+    while(getline(cin, s)){
+       /* if(comment(s) == -1 && !balance)
+         // /*//  balance += (openComment(s) != -1 ? 1 : 0);
+     //   balance += (openComment(s) <= comment(s)  && openComment(s) != -1 ? 1 : 0);
+
+        if (comment(s) == -1)
+            balance += (closeComment(s) != -1 ? -1 : 0);
+
+        balance += (balance && comment(s) != -1 && closeComment(s) !=-1 ? -1 : 0);
+
+        if((comment(s) > closeComment(s) || comment(s) < openComment(s)) && !balance)
+            write(s, comment(s));
+        //cout << "balance: "<< balance<<endl;
+        //cout << "open: " << openComment(s);
+        /*cout << "\nclose: " << closeComment(s)<<endl;
+        //cout << "comment: " << comment(s);
+        */
+
+    }
+}

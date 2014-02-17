@@ -1,0 +1,162 @@
+// Быки и коровы
+#include <iostream>
+#include <sstream>
+#include <vector>
+#include <ctime>
+#include <algorithm>
+#include <cstring>
+using namespace std;
+
+const int countDigit = 4;
+
+const string Hello="                             БЫКИ И КОРОВЫ\n\n          "
+                   "             Доброго времени суток!\n\n"
+                   "             Попробуй меня победить(так как победить меня невозможно,\n"
+                   "             будем считать что ты победил, если я выйграю тебя больше,\n"
+                   "             чем за 6 ходов=D)\n\n\n";
+
+struct Set //множество ходов и операции над ними
+{
+    char moves[100000][4];//все возможные ходы на текущий момент времен
+    int size = 0;
+
+    void initialization()
+    {
+        int counter = 0;
+        for (char i = '1'; i <= '9'; i++)
+        {
+            for (char j = '0'; j <= '9'; j++)
+            {
+                if (i == j)
+                    continue;
+                for (char k = '0'; k <= '9'; k++)
+                {
+                    if (i == k || j == k)
+                        continue;
+                    for (char z = '0'; z <= '9'; z++)
+                    {
+                        if (i == z || j == z || k == z)
+                            continue;
+
+                        int counterA = 0;
+                        moves[counter][(counterA++) % 4] = i;
+                        moves[counter][(counterA++) % 4] = j;
+                        moves[counter][(counterA++) % 4] = k;
+                        moves[counter++][(counterA++) % 4] = z;
+                    }
+                }
+            }
+        }
+
+        size = counter - 1;
+    }
+
+    void clear()
+    {
+        size = 0;
+    }
+
+    bool checkEntry(char (&moveI)[4], char (&move)[4], int iBull, int iCow)//i - ideal moveI - итый ход
+    {
+        int countEntryBull = 0;
+        int countEntryCow = 0;
+
+        for (int i=0; i < countDigit; i++)
+            for (int j=0; j < countDigit; j++)
+                if(i == j)
+                    countEntryBull += (move[j] == moveI[i]);
+                else
+                    countEntryCow += (move[j] == moveI[i]);
+
+        if(countEntryBull != iBull || countEntryCow != iCow)
+            return false;
+        return true;
+    }
+};
+
+void cutofMove(char (&move)[4], Set &cowBull, int bull, int cow, int &isExistMove)//отсекание лишних ходов
+{
+    for (int i = 0; i < cowBull.size; i++)
+        if (!cowBull.checkEntry(cowBull.moves[i], move, bull, cow))
+        {
+            cowBull.moves[i][0] = 0;
+            isExistMove--;
+        }
+}
+
+int choiceMove(Set &cowBull)
+{
+    for (int i = 0; i < cowBull.size; i++)
+        if (cowBull.moves[i][0] != 0)
+            return i;
+}
+
+void printMove(char (&move)[4])
+{
+    for(int i = 0; i < 4; i++)
+        cout << move[i];
+}
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+    cout  <<  Hello;
+
+    while (true)
+    {
+        Set cowBull;
+        int countBull = 0;
+        int countCow = 0;
+
+        srand(time(NULL));
+
+        cowBull.initialization();
+        char move[4];
+        strncpy (move, cowBull.moves[choiceMove(cowBull)], 4);
+
+        int n = 1;
+
+        while (countBull != 4)
+        {
+
+            int isExistMove = cowBull.size;
+            cout << n++  << ": "  << "Мой ход ";
+            printMove(move);
+            cout << "\nБыков:";
+            cin >> countBull;
+            cout << "Коров:";
+            cin >> countCow;
+            cout << endl;
+
+            cutofMove(move, cowBull, countBull, countCow, isExistMove);
+
+            if (countBull == countDigit)
+                if (n > 6)
+                    cout << "Тебе просто повезло=)\n";
+                else
+                    cout << "Я снова выиграл=)\n";
+
+            if (!isExistMove)
+            {
+                cout  <<  "Друг, прости, но ты что-то напутал";
+                break;
+            }
+            strncpy(move, cowBull.moves[choiceMove(cowBull)], 4);
+        }
+
+        cout << "Ну что? Еще разок?\n\n (Если да, введи 1, если нет 0)";
+
+        int choice = 1;
+        cin >> choice;
+
+        if (choice == 0)
+        {
+            cout << "Спасибо за игру" <<endl;
+            return 0;
+        }
+
+        cowBull.clear();
+    }
+
+    return 0;
+}

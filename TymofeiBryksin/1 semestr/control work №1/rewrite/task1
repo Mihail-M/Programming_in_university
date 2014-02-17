@@ -1,0 +1,56 @@
+#include <iostream>
+#include <time.h>
+#include <stdlib.h>
+
+using namespace std;
+
+void insertSort(int *arr, int length)
+{
+    for (int i = 2; i < length; i+=2)
+        for (int j = i; j > 0 && arr[j - 2] > arr[j]; j-=2)
+            swap(arr[j], arr[j-2]);
+}
+
+enum Change { autocreate, manually };
+Change intToChange(int one)
+{
+    return static_cast<Change>(one);
+}
+
+int main()
+{
+    int n = 0;
+    cin >> n;
+    int *arr = new int[n];
+    cout << "If you want input your array manually input 1:\nelse input 2:\n";
+    int tmp = 0;
+    cin >> tmp;
+    Change change = intToChange(tmp);
+
+
+    if (change == manually)
+    {
+        cout << "Input array:";
+        for (int i = 0; i < n; i++)
+            cin >> arr[i];
+    }
+    else
+    {
+        srand (time(NULL));
+        for (int i = 0; i < n; i++)
+            arr[i] = rand() % 10000;
+
+        cout << "\nYour array is: ";
+
+        for (int i = 0; i < n; i++)
+            cout << arr[i] << " ";
+
+    }
+
+    insertSort(arr, n);
+    cout << "\nAnswer is: ";
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+    delete[] arr;
+    return 0;
+}
