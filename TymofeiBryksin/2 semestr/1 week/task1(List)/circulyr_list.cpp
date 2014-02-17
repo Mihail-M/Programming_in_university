@@ -46,12 +46,13 @@ void List::push_front(int x)
 {
     ListElement *newElem = new ListElement;
     newElem->setKey(x);
+
     if (isEmpty()) {
         newElem->setNext(newElem);
         newElem->setPrev(newElem);
-
         head = newElem;
-        last = newElem;    }
+        last = newElem;
+    }
     else {
         newElem->setNext(head);
         head->setPrev(newElem);
@@ -59,7 +60,6 @@ void List::push_front(int x)
         head->setPrev(last);
         last->setNext(head);
     }
-
 
     size++;
 }
@@ -105,7 +105,6 @@ void List::insert(ListElement *pos, int n, int x)
         newElem->setKey(x);
         newElem->setNext(pos->getNext());
         newElem->setPrev(pos);
-
         pos->getNext()->setPrev(newElem);
         pos->setNext(newElem);
         size++;
@@ -127,10 +126,12 @@ void List::erase(ListElement *pos)
 ListElement *List::find(int x)
 {
     ListElement *temp = head;
+
     for(int i = 0; i < size; i++, temp = temp->getNext())
         if(temp->getKey() == x) {
             return temp;
         }
+
     delete temp;
     return nullptr;
 }
@@ -138,7 +139,11 @@ ListElement *List::find(int x)
 ListElement *List::getNListElem(int n)
 {
     ListElement *temp = head;
-    for(int i = 0; i < n; i++, temp = temp->getNext()){}
+    for(int i = 0; i < n; i++, temp = temp->getNext())
+    {
+
+    }
+
     return temp;
 }
 
@@ -150,15 +155,20 @@ bool List::isEmpty()
 void List::show()
 {
     ListElement *t = head;
+
     for(int i = 0; i < size; i++, t = t->getNext()) {
-        std::cout << t->getKey();
+        std::cout << t->getKey() << " ";
     }
+    std::cout << std::endl;
+
     delete t;
 }
+
 ListElement *List::Head() const
 {
     return head;
 }
+
 ListElement *List::Last() const
 {
     return last;
