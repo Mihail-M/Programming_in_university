@@ -5,8 +5,7 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     stackelement.cpp \
-    stack.cpp \
-    stackArray.cpp
+    stack.cpp
 
 HEADERS += \
     stackelement.h \

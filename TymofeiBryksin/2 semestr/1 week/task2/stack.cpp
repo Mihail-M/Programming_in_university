@@ -1,5 +1,7 @@
 #include "stack.h"
+#include <stackelement.h>
 
+StackElement *last;
 Stack::Stack()
 {
     size = 0;
@@ -36,7 +38,6 @@ valueType Stack::top()
         return last->getKey();
     return -1;
 }
-
 
 int Stack::Size()
 {

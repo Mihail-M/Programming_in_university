@@ -1,10 +1,11 @@
 #pragma once
-#include "stackelement.h"
 
 class Stack
 {
 
 public:
+    typedef double valueType;
+
     Stack();
 
     bool isEmpty();
@@ -16,7 +17,6 @@ public:
     int Size();
 
 private:
-    StackElement *last;
     int size;
 };
 
