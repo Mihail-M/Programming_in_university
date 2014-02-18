@@ -1,12 +1,14 @@
 #pragma once
 
+typedef int valueType;
 class ListElement
 {
 public:
     ListElement();
     ~ListElement();
+
     int getKey() const;
-    void setKey(int value);
+    void setKey(valueType value);
 
     ListElement *getNext() const;
     void setNext(ListElement *value);
@@ -15,7 +17,7 @@ public:
     void setPrev(ListElement *value);
 
 private:
-    int key;
+    valueType key;
     ListElement *next;
     ListElement *prev;
 

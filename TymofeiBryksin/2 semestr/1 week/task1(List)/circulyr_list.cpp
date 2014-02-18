@@ -15,12 +15,12 @@ List::~List()
     delete this;
 }
 
-int List::getSize()
+valueType List::getSize()
 {
     return size;
 }
 
-void List::push_back(int x)
+void List::push_back(valueType x)
 {
     ListElement *newElem = new ListElement;
     newElem->setKey(x);
@@ -42,7 +42,7 @@ void List::push_back(int x)
     size++;
 }
 
-void List::push_front(int x)
+void List::push_front(valueType x)
 {
     ListElement *newElem = new ListElement;
     newElem->setKey(x);
@@ -86,7 +86,7 @@ void List::pop_back()
     }
 }
 
-void List::insert(ListElement *pos, int x)
+void List::insert(ListElement *pos, valueType x)
 {
     ListElement *newElem = new ListElement;
     newElem->setKey(x);
@@ -98,7 +98,7 @@ void List::insert(ListElement *pos, int x)
     size++;
 }
 
-void List::insert(ListElement *pos, int n, int x)
+void List::insert(ListElement *pos, int n, valueType x)
 {
     for(int i = 0; i < n; i++) {
         ListElement *newElem = new ListElement;
@@ -123,7 +123,7 @@ void List::erase(ListElement *pos)
     }
 }
 
-ListElement *List::find(int x)
+ListElement *List::find(valueType x)
 {
     ListElement *temp = head;
 
