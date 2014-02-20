@@ -3,33 +3,37 @@
 #include <cstdlib>
 using namespace std;
 
-void qsort(int l, int r, int*& a)
+int Partition(int *A, int p, int r)
 {
-    int x, i, j;
-    i = l;
-    j = r;
-    x = a[rand() % (r + 1)];
-    while (i <= j)
-    {
-        while (a[i] < x)
-            i++;
+    int x = A[r];
+    int i = p - 1;
 
-        while (a[j] > x)
-            j--;
-
-        if (i <= j)
+    for (int j = p; j <= r - 1; j++)
+        if (A[j] <= x)
         {
-            swap(a[i],a[j]);
             i++;
-            j--;
+            swap(A[i], A[j]);
         }
+
+    swap(A[i+1], A[r]);
+    return i + 1;
+}
+
+int Randomized_Partition(int *A, int p ,int r)
+{
+    int i = rand() % (r - p) + p;
+    swap(A[i], A[r]);
+    return Partition(A, p , r);
+}
+
+void qsort(int *A, int p, int r){
+
+    if(p < r){
+        int q = Randomized_Partition(A, p, r);
+        qsort(A, p, q - 1);
+        qsort(A, q + 1, r);
     }
 
-    if (l < j)
-        qsort(l, j, a);
-
-    if (i < r)
-        qsort(i, r, a);
 }
 
 int main()
@@ -43,7 +47,7 @@ int main()
     for (int i = 0; i < n; ++i)
         cin >> a[i];
 
-    qsort(0, n - 1, a);
+    qsort(a, 0, n-1);
     cout << "This sorted array: " << endl;
 
     for (int i = 0; i < n; ++i)
