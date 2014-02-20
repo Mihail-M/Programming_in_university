@@ -5,11 +5,10 @@
 using namespace std;
 
 
-long int a[200000],b[200000]; long int n;
-
-void merge(long int *a,long int l,long int m,long int r){
+template <class T>
+void merge(T *a, long int l,long int m,long int r){
 	long int i = l, j = m + 1, pres = l;
-
+    T *b = new T[r-l+1];
 	while(i<=m && j<=r)
 		if(a[i] < a[j])
 		    b[pres++] = a[i++];
@@ -24,9 +23,10 @@ void merge(long int *a,long int l,long int m,long int r){
 
 	for(long int k = l; k <= r; k++)
         a[k] = b[k];
+    delete[] b;
 }
-
-void merge_sort(long int *a,long int l,long int r){
+template <class T>
+void merge_sort(T *a,long int l,long int r){
 	long int m=(l+r) >> 1;
 
 	if(l<r) {
@@ -35,8 +35,8 @@ void merge_sort(long int *a,long int l,long int r){
 		merge(a,l,m,r);
 	}
 }
-
-bool is_ok(long int *a, long int *b, int n)
+template <class T>
+bool is_ok(T *a, T *b, int n)
 {
     for (int i = 0; i < n; i++)
         if(a[i] != b[i])

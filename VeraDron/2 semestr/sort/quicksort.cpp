@@ -2,10 +2,10 @@
 #include <ctime>
 #include <cstdlib>
 using namespace std;
-
-int Partition(int *A, int p, int r)
+template <class T>
+int Partition(T *A, int p, int r)
 {
-    int x = A[r];
+    T x = A[r];
     int i = p - 1;
 
     for (int j = p; j <= r - 1; j++)
@@ -18,15 +18,15 @@ int Partition(int *A, int p, int r)
     swap(A[i+1], A[r]);
     return i + 1;
 }
-
-int Randomized_Partition(int *A, int p ,int r)
+template <class T>
+int Randomized_Partition(T *A, int p ,int r)
 {
     int i = rand() % (r - p) + p;
     swap(A[i], A[r]);
     return Partition(A, p , r);
 }
-
-void qsort(int *A, int p, int r){
+template <class T>
+void qsort(T *A, int p, int r){
 
     if(p < r){
         int q = Randomized_Partition(A, p, r);
@@ -44,13 +44,13 @@ int main()
     cin >> n;
     int *a = new int[n];
 
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i < n; i++)
         cin >> a[i];
 
     qsort(a, 0, n-1);
     cout << "This sorted array: " << endl;
 
-    for (int i = 0; i < n; ++i)
+    for (int i = 0; i < n; i++)
         cout << a[i] <<' ';
 
     delete[] a;
