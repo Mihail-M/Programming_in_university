@@ -48,7 +48,7 @@ void test()
 {
     for(int i = 1; i <= 7; i++)
     {
-        string path = "test";
+        string path = "test/test";
         path += i +'0';
         path += ".txt";
         ifstream in;
@@ -95,6 +95,7 @@ int main()
 
     for(long int i = 0; i < n; i++)
       cout << a[i] << " ";
+
     delete[] a;
     return 0;
 }
