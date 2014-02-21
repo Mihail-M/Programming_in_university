@@ -1,6 +1,6 @@
 #pragma once
 
-typedef char valueType;
+typedef double valueType;
 
 class StackElement
 {

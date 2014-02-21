@@ -3,6 +3,7 @@
 #include <cstring>
 #include <locale>
 #include "stack.h"
+#include <iostream>
 
 using namespace std;
 
@@ -10,118 +11,110 @@ bool isOperator(char a)
 {
     return a == '+' || a == '-' || a == '*' || a == '/';
 }
-bool isLowPriorityOperator(char a)
-{
-    return a == '+' ||  a =='-';
-}
-
-bool isHightPriorityOperator(char a)
-{
-    return a == '*' ||  a =='/';
-}
 
 bool isStaple(char a)
 {
-    return a == '(' || a == '-';
+    return a == '(' || a == ')';
 }
-bool isDoINeedToGet(char a, char b)
+int priority(char c)
 {
-    return ( (isLowPriorityOperator(a) && isHightPriorityOperator(b)) || (isLowPriorityOperator(a) && isHightPriorityOperator(b)) );
-}
-double calculate(char input[])
-{
-    Stack *calc = new Stack();
+    switch(c)
+    {
+    case '*': return 3;
+    case '/': return 3;
 
-        for (int i = 0; i < strlen(input); i++)
-            if(isdigit(input[i]))
-                calc->push(input[i] - '0');
-            else {
-                double first = 0, second = 0;
-                switch (input[i]) {
-                case '*':
-                    first = calc->top();
-                    calc->pop();
-                    second = calc->top();
-                    calc->pop();
-                    calc->push(first * second);
-                    break;
-                case '/':
-                    first = calc->top();
-                    calc->pop();
-                    second = calc->top();
-                    calc->pop();
-
-                    calc->push(first / second);
-                    break;
-                case '+':
-                     first = calc->top();
-                    calc->pop();
-                     second = calc->top();
-                    calc->pop();
-
-                    calc->push(first + second);
-                    break;
-                case '-':
-                     first = calc->top();
-                    calc->pop();
-                     second = calc->top();
-                    calc->pop();
-
-                    calc->push(first - second);
-                    break;
-
-                default:
-                    break;
-                }
-            }
-        double result = calc->top();
-        return result;
+    case '+': return 2;
+    case '-': return 2;
     }
-
-int main()
-{
-    char inputStr[10000];
-    char queueOut[10000];
+    return 0;
+}
+void makePolishNotation(char *inputStr, char *queueOut) {
     int counter = 0;
     Stack *stack = new Stack();
-    printf("This beutiful calc calculate arithmetic expression\n");
-    printf("Please enter arithmetic expression\n");
-    scanf("%s", inputStr);
+
     for (int i = 0; i < strlen(inputStr); i++) {
 
         if ( isdigit(inputStr[i]) )
             queueOut[counter++] = inputStr[i];
 
         if (isOperator(inputStr[i])) {
-            while (isDoINeedToGet(inputStr[i], stack->top()) && !stack->isEmpty()){
-                queueOut[counter++] =  (char)stack->top();
+            while (!stack->isEmpty() && isOperator(stack->top()) && (priority(inputStr[i]) <= priority(stack->top()))){
+                queueOut[counter++] = (char)stack->top();
                 stack->pop();
             }
 
-        stack->push(inputStr[i]);
+            stack->push(inputStr[i]);
         }
 
         if (inputStr[i] == '(')
             stack->push(inputStr[i]);
 
         if (inputStr[i] == ')') {
-            while (stack->top() != '(')
+            while (!stack->isEmpty() && stack->top() != '('){
                 queueOut[counter++] = (char)stack->top();
-            stack->pop();
-
-            if((char)stack->top() == '(' )
                 stack->pop();
-            else printf("WRONG, WRONG, WRONG! You cheated me!\n");
+
+                if((char)stack->top() == '(' )
+                    stack->pop();
+            }
         }
     }
 
     while(!stack->isEmpty()){
         queueOut[counter++] =  (char)stack->top();
-                   stack->pop();
-}
+        stack->pop();
+    }
     queueOut[counter++] = '\0';
 
-    printf("Answer is: %.3f\n\nBY BY=)", calculate(queueOut));
+}
+
+double calculate(char *input)
+{
+
+    Stack calc;
+    for (int i = 0; i < strlen(input); i++) {
+        if(isdigit(input[i]))
+            calc.push(input[i] - '0');
+        else {
+            double second = calc.pop();
+            double first = calc.pop();
+
+            switch (input[i]) {
+            case '*':
+                calc.push(first * second);
+                break;
+            case '/':
+                calc.push(first / second);
+                break;
+            case '+':
+                calc.push(first + second);
+                break;
+            case '-':
+                calc.push(first - second);
+                break;
+
+            default:
+                printf("Sorry(\n");
+                break;
+            }
+        }
+    }
+    double result = calc.top();
+    return result;
+}
+
+int main()
+{
+    char inputStr[10000];
+    char queueOut[10000];
+
+    printf("This beutiful calc calculate arithmetic expression\n");
+    printf("Please enter arithmetic expression\n");
+    scanf("%s", inputStr);
+
+    makePolishNotation(inputStr, queueOut);
+
+    printf("Answer is: %.7f\n\nBY BY=)", calculate(queueOut));
 
     return 0;
 }
