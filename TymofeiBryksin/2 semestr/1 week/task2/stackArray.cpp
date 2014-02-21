@@ -20,9 +20,9 @@ valueType Stack::top()
     return a[size - 1];
 }
 
-void Stack::pop()
+int Stack::pop()
 {
-    --size;
+    rreturn a[--size];
 }
 
 int Stack::Size()
