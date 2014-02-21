@@ -4,8 +4,7 @@ using namespace std;
  
 int n[20001];
  
-int
-main()
+int main()
 {
     int *a = &n[10000], n, i, b;
     cin >> n;
@@ -14,5 +13,6 @@ main()
         ++a[b];
     }
     for (b = -10000; b <= 10000; ++b)
-        while (a[b]--) cout << b << ' ';
+    return 0;
+    return 0;
 }
