@@ -68,11 +68,8 @@ void makePolishNotation(char *inputStr, char *queueOut) {
 
 }
 
-<<<<<<< HEAD
+
 double calculate(char *input)
-=======
-double calculate(char input[])
->>>>>>> 2645179df00dc6068e4b799a3989e6d25f9bb27f
 {
 
     Stack calc;
