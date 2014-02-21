@@ -6,55 +6,39 @@ using namespace std;
 
 double calculate(char *input)
 {
-    Stack *calc = new Stack();
 
-    for (int i = 0; i < strlen(input); i++)
+    Stack calc;
+    for (int i = 0; i < strlen(input); i++) {
         if(isdigit(input[i]))
-            calc->push(input[i] - '0');
+            calc.push(input[i] - '0');
         else {
-            double first = 0, second = 0;
+            double second = calc.pop();
+            double first = calc.pop();
+
             switch (input[i]) {
             case '*':
-                first = calc->top();
-                calc->pop();
-                second = calc->top();
-                calc->pop();
-                calc->push(first * second);
+                calc.push(first * second);
                 break;
             case '/':
-                first = calc->top();
-                calc->pop();
-                second = calc->top();
-                calc->pop();
-
-                calc->push(first / second);
+                calc.push(first / second);
                 break;
             case '+':
-                first = calc->top();
-                calc->pop();
-                second = calc->top();
-                calc->pop();
-
-                calc->push(first + second);
+                calc.push(first + second);
                 break;
             case '-':
-                first = calc->top();
-                calc->pop();
-                second = calc->top();
-                calc->pop();
-
-                calc->push(first - second);
+                calc.push(first - second);
                 break;
 
             default:
+                printf("Sorry(\n");
                 break;
             }
         }
+    }
     delete calc;
-    double result = calc->top();
+    double result = calc.top();
     return result;
 }
-
 int main(int argc, char *argv[])
 {
     char *input = new char[argc-1];
