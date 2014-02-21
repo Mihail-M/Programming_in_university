@@ -1,10 +1,19 @@
 #include "stack.h"
-#include <stackelement.h>
 
-StackElement *last;
 Stack::Stack()
 {
     size = 0;
+    last = nullptr;
+}
+
+Stack::~Stack()
+{
+    clear();
+}
+void Stack::clear()
+{
+    while(size != 0)
+        pop();
 }
 
 bool Stack::isEmpty()
@@ -43,5 +52,3 @@ int Stack::Size()
 {
     return size;
 }
-
-

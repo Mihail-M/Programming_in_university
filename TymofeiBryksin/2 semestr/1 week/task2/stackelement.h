@@ -1,11 +1,12 @@
 #pragma once
 
-typedef double valueType;
+typedef char valueType;
 
 class StackElement
 {
 public:
     StackElement();
+
     valueType getKey() const;
     void setKey(const valueType &value);
 
@@ -17,4 +18,3 @@ private:
     StackElement *prev;
 
 };
-

@@ -22,6 +22,3 @@ void StackElement::setPrev(StackElement *value)
     prev = value;
 }
 
-
-
-

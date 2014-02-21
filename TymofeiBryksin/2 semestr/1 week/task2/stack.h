@@ -1,22 +1,24 @@
 #pragma once
+#include "stackelement.h"
 
 class Stack
 {
 
 public:
-    typedef double valueType;
 
     Stack();
+    ~Stack();
 
     bool isEmpty();
 
     void push(valueType x);
     void pop();
-
+    void clear();
     valueType top();
     int Size();
 
 private:
     int size;
-};
+    StackElement *last;
 
+};
