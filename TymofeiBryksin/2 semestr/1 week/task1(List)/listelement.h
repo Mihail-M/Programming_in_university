@@ -10,6 +10,7 @@ public:
     int getKey() const;
     void setKey(valueType value);
 
+
     ListElement *getNext() const;
     void setNext(ListElement *value);
 

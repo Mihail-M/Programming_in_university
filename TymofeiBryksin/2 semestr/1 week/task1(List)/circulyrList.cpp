@@ -1,13 +1,13 @@
-#include "list.h"
+#include "circulyrList.h"
 #include <iostream>
 
-List::List()
+circulyrList::circulyrList()
 {
     head = nullptr;
     size = 0;
 }
 
-List::~List()
+circulyrList::~circulyrList()
 {
 
     for(int i = 0; i < size; i++)
@@ -15,12 +15,12 @@ List::~List()
     delete this;
 }
 
-valueType List::getSize()
+valueType circulyrList::getSize()
 {
     return size;
 }
 
-void List::push_back(valueType x)
+void circulyrList::push_back(valueType x)
 {
     ListElement *newElem = new ListElement;
     newElem->setKey(x);
@@ -42,7 +42,7 @@ void List::push_back(valueType x)
     size++;
 }
 
-void List::push_front(valueType x)
+void circulyrList::push_front(valueType x)
 {
     ListElement *newElem = new ListElement;
     newElem->setKey(x);
@@ -64,66 +64,87 @@ void List::push_front(valueType x)
     size++;
 }
 
-void List::pop_front()
+void circulyrList::pop_front()
 {
     if(!isEmpty()) {
         ListElement *temp = head;
         head = head->getNext();
+        head->setPrev(last);
+        last->setNext(head);
+
+        delete temp;
+        size--;
+    }
+}
+
+void circulyrList::pop_back()
+{
+    if(!isEmpty()) {
+        ListElement *temp = last;
+        last = last->getPrev();
+        last->setNext(head);
         head->setPrev(last);
         delete temp;
         size--;
     }
 }
 
-void List::pop_back()
+void circulyrList::insert(ListElement *pos, valueType x)
 {
-    if(!isEmpty()) {
-        ListElement *temp = last;
-        last = last->getPrev();
-        last->setNext(head);
-        delete temp;
-        size--;
-    }
+    if(pos == last) push_back(x);
+    else
+        if(pos == head) push_front(x);
+        else{
+            ListElement *newElem = new ListElement;
+
+            newElem->setKey(x);
+            newElem->setNext(pos->getNext());
+            newElem->setPrev(pos);
+
+            pos->getNext()->setPrev(newElem);
+            pos->setNext(newElem);
+            size++;
+        }
 }
 
-void List::insert(ListElement *pos, valueType x)
-{
-    ListElement *newElem = new ListElement;
-    newElem->setKey(x);
-    newElem->setNext(pos->getNext());
-    newElem->setPrev(pos);
-
-    pos->getNext()->setPrev(newElem);
-    pos->setNext(newElem);
-    size++;
-}
-
-void List::insert(ListElement *pos, int n, valueType x)
+void circulyrList::insert(ListElement *pos, int n, valueType x)
 {
     for(int i = 0; i < n; i++) {
-        ListElement *newElem = new ListElement;
-        newElem->setKey(x);
-        newElem->setNext(pos->getNext());
-        newElem->setPrev(pos);
-        pos->getNext()->setPrev(newElem);
-        pos->setNext(newElem);
-        size++;
+        if(pos == last) push_back(x);
+        else
+            if(pos == head) push_front(x);
+            else{
+                ListElement *newElem = new ListElement;
+
+                newElem->setKey(x);
+                newElem->setNext(pos->getNext());
+                newElem->setPrev(pos);
+
+                pos->getNext()->setPrev(newElem);
+                pos->setNext(newElem);
+                size++;
+            }
     }
 }
 
-void List::erase(ListElement *pos)
+void circulyrList::erase(ListElement *pos)
 {
     if(!isEmpty()) {
-        pos = pos->getNext();
-        ListElement *temp = pos;
-        pos->getPrev()->setNext(pos->getNext());
-        pos->getNext()->setPrev(pos->getPrev());
-        delete temp;
-        size--;
+        if(pos->getNext() == last)pop_back();
+        else
+            if(pos->getNext() == head)pop_front();
+            else{
+                pos = pos->getNext();
+                ListElement *temp = pos;
+                pos->getPrev()->setNext(pos->getNext());
+                pos->getNext()->setPrev(pos->getPrev());
+                delete temp;
+                size--;
+            }
     }
 }
 
-ListElement *List::find(valueType x)
+ListElement *circulyrList::find(valueType x)
 {
     ListElement *temp = head;
 
@@ -136,7 +157,7 @@ ListElement *List::find(valueType x)
     return nullptr;
 }
 
-ListElement *List::getNListElem(int n)
+ListElement *circulyrList::getNListElem(int n)
 {
     ListElement *temp = head;
     for(int i = 0; i < n; i++, temp = temp->getNext())
@@ -147,12 +168,12 @@ ListElement *List::getNListElem(int n)
     return temp;
 }
 
-bool List::isEmpty()
+bool circulyrList::isEmpty()
 {
     return (size == 0);
 }
 
-void List::show()
+void circulyrList::show()
 {
     ListElement *t = head;
 
@@ -161,15 +182,14 @@ void List::show()
     }
     std::cout << std::endl;
 
-    delete t;
 }
 
-ListElement *List::Head() const
+ListElement *circulyrList::Head() const
 {
     return head;
 }
 
-ListElement *List::Last() const
+ListElement *circulyrList::Last() const
 {
     return last;
 }
