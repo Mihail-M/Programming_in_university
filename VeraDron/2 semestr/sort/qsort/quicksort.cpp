@@ -1,7 +1,12 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
+#include <fstream>
+#include <algorithm>
+#include "test.h"
+
 using namespace std;
+
 template <class T>
 int Partition(T *A, int p, int r)
 {
@@ -25,6 +30,7 @@ int Randomized_Partition(T *A, int p ,int r)
     swap(A[i], A[r]);
     return Partition(A, p , r);
 }
+
 template <class T>
 void qsort(T *A, int p, int r){
 
@@ -36,10 +42,15 @@ void qsort(T *A, int p, int r){
 
 }
 
+
 int main()
 {
     srand(time(NULL));
     int n;
+    void (*f)(int * , int, int) = &qsort;
+
+    test(f);
+
     cout << "Input n: ";
     cin >> n;
     int *a = new int[n];
