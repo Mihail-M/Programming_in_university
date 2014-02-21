@@ -22,7 +22,7 @@ valueType Stack::top()
 
 int Stack::pop()
 {
-    rreturn a[--size];
+    return a[--size];
 }
 
 int Stack::Size()
