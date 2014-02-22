@@ -4,15 +4,14 @@
 circulyrList::circulyrList()
 {
     head = nullptr;
+    last = nullptr;
     size = 0;
 }
 
 circulyrList::~circulyrList()
 {
-
     for(int i = 0; i < size; i++)
         pop_back();
-    delete this;
 }
 
 valueType circulyrList::getSize()
