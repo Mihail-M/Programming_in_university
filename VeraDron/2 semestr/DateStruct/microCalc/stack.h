@@ -12,7 +12,7 @@ public:
     bool isEmpty();
 
     void push(valueType x);
-    void pop();
+    int pop();
     void clear();
     valueType top();
     int Size();

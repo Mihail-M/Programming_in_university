@@ -35,7 +35,6 @@ double calculate(char *input)
             }
         }
     }
-    delete calc;
     double result = calc.top();
     return result;
 }
