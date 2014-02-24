@@ -1,7 +1,6 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
-#include <algorithm>
 
 #include "complexnumber.h"
 
@@ -51,6 +50,7 @@ int main()
     for(int i = 0; i < n; i++) {
         complexArray[i].print();
     }
+    delete[] complexArray;
 
 
     return 0;
