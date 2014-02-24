@@ -29,9 +29,7 @@ int main()
 {
     srand(time(NULL));
     ComplexNumber a(1,2), b(1,34);
-    a = a+b;
-    a.print();
-    a = a-b;
+    a = a+b-b;
     a.print();
     a = a*b;
     a.print();

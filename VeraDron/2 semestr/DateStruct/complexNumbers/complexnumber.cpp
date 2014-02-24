@@ -35,10 +35,10 @@ ComplexNumber ComplexNumber::operator *(ComplexNumber const &B)
     return (*this);
 }
 
-bool ComplexNumber::operator <=(ComplexNumber &B)
+bool operator <=(ComplexNumber &A, ComplexNumber &B)
 {
-    double re1 = a;
-    double im1 = b;
+    double re1 = A.getRealPart();
+    double im1 = A.getImaginaryPart();
     double re2 = B.getRealPart();
     double im2 = B.getImaginaryPart();
 
@@ -46,38 +46,38 @@ bool ComplexNumber::operator <=(ComplexNumber &B)
     return (re1 < re2 || (re1 == re2 && im1 <= im2));
 }
 
-bool ComplexNumber::operator <(ComplexNumber &B)
+bool operator <(ComplexNumber &A, ComplexNumber &B)
 {
-    double re1 = a;
-    double im1 = b;
+    double re1 = A.getRealPart();
+    double im1 = A.getImaginaryPart();
     double re2 = B.getRealPart();
     double im2 = B.getImaginaryPart();
 
     return (re1 < re2 || re1 == re2 && im1 < im2);
 }
 
-bool ComplexNumber::operator ==(ComplexNumber &B)
+bool operator ==(ComplexNumber &A, ComplexNumber &B)
 {
-    double re1 = a;
-    double im1 = b;
+    double re1 = A.getRealPart();
+    double im1 = A.getImaginaryPart();
     double re2 = B.getRealPart();
     double im2 = B.getImaginaryPart();
 
     return (re1 == re2 && im1 == im2);
 }
-bool ComplexNumber::operator >(ComplexNumber &B)
+bool operator >(ComplexNumber &A, ComplexNumber &B)
 {
-    double re1 = a;
-    double im1 = b;
+    double re1 = A.getRealPart();
+    double im1 = A.getImaginaryPart();
     double re2 = B.getRealPart();
     double im2 = B.getImaginaryPart();
 
     return (re1 > re2 || re1 == re2 && im1 > im2);
 }
-bool ComplexNumber::operator >=(ComplexNumber &B)
+bool operator >=(ComplexNumber &A, ComplexNumber &B)
 {
-    double re1 = a;
-    double im1 = b;
+    double re1 = A.getRealPart();
+    double im1 = A.getImaginaryPart();
     double re2 = B.getRealPart();
     double im2 = B.getImaginaryPart();
 

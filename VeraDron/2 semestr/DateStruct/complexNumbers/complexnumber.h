@@ -13,13 +13,6 @@ public:
     ComplexNumber operator -(ComplexNumber const &B);
     ComplexNumber operator *(ComplexNumber const &B);
 
-    bool operator <(ComplexNumber &B);
-    bool operator <= (ComplexNumber &B);
-    bool operator == (ComplexNumber &B);
-    bool operator >= (ComplexNumber &B);
-    bool operator > (ComplexNumber &B);
-
-
     double getImaginaryPart() const;
     void setImaginaryPart(double value);
 
@@ -29,5 +22,13 @@ public:
 private:
     double a; // действительная часть
     double b; // мнимая часть
+
+    friend bool operator <(ComplexNumber &A, ComplexNumber &B);
+    friend bool operator <= (ComplexNumber &A, ComplexNumber &B);
+    friend bool operator == (ComplexNumber &A, ComplexNumber &B);
+    friend bool operator >= (ComplexNumber &A, ComplexNumber &B);
+    friend bool operator > (ComplexNumber &A, ComplexNumber &B);
+
+
 };
 
