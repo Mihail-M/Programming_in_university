@@ -73,5 +73,4 @@ void uncirculyrList::erase(int pos)
         delete temp;
         size--;
     }
-
 }

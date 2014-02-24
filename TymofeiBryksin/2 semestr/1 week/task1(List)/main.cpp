@@ -27,7 +27,6 @@ int main()
     for(int i = 0 ;i < 10;i++)
         l1->push_back(i);
 
-
     for(int i = 0 ;i < 10;i++)
         l1->push_front(i);
     l1->show();

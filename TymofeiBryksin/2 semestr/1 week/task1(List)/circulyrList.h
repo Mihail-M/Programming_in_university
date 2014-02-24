@@ -28,10 +28,11 @@ protected:
         ListElement *prev;
     };
 
+
     ListElement *head;
     ListElement *last;
     int size;
-    ListElement *getNListElem(int pos);
+    ListElement *getNListElem(int pos); // возвращает pos-й элемент списка
 
 };
 

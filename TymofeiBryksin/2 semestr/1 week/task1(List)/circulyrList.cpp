@@ -1,6 +1,6 @@
 #include "circulyrList.h"
 #include <iostream>
-typedef double valueType;
+
 
 circulyrList::ListElement *circulyrList::getNListElem(int pos)
 {

@@ -1,6 +1,8 @@
 #pragma once
 #include "circulyrList.h"
+
 typedef double valueType;
+
 class uncirculyrList : public circulyrList
 {
 public:
