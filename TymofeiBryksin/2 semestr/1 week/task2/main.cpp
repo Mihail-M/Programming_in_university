@@ -66,7 +66,6 @@ void makePolishNotation(char *inputStr, char *queueOut) {
         st->pop();
     }
     queueOut[counter++] = '\0';
-
 }
 
 

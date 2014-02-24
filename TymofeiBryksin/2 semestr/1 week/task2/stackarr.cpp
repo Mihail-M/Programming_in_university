@@ -15,6 +15,7 @@ valueType stackArr::pop() {
     return a[--size];
 
 }
+
 void stackArr::clear(){
 
     size = 0;

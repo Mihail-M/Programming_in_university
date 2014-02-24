@@ -1,5 +1,7 @@
 #pragma once
+
 typedef double valueType;
+
 class stack
 {
 

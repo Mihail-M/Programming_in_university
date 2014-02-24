@@ -47,6 +47,7 @@ valueType stack::top()
 {
     if(!isEmpty())
         return last->key;
+
     return -1;
 }
 
