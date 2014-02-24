@@ -22,7 +22,7 @@ int Partition(int *A, int p, int r)
 
 int Randomized_Partition(int *A, int p ,int r)
 {
-    int i = rand() % (r - p) + p;
+    int i = rand() % (r - p) + p + 1;
     swap(A[i], A[r]);
     return Partition(A, p , r);
 }

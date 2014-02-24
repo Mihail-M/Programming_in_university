@@ -1,7 +1,6 @@
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
-#include <algorithm>
 
 #include "complexnumber.h"
 
@@ -43,7 +42,7 @@ int main()
 
     ComplexNumber *complexArray = new ComplexNumber[n];
     for(int i = 0; i < n; i++) {
-        complexArray[i] = ComplexNumber(rand()%200 - 100, rand()%200 - 100);
+        complexArray[i] = ComplexNumber(rand()%200 - 100 + 1, rand()%200 - 100 + 1);
     }
 
     bubbleSort(complexArray, 0, n-1);
@@ -51,6 +50,7 @@ int main()
     for(int i = 0; i < n; i++) {
         complexArray[i].print();
     }
+    delete[] complexArray;
 
 
     return 0;
