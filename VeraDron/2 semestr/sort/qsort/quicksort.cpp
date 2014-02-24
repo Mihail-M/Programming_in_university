@@ -26,7 +26,7 @@ int Partition(T *A, int p, int r)
 template <class T>
 int Randomized_Partition(T *A, int p ,int r)
 {
-    int i = rand() % (r - p) + p;
+    int i = rand() % (r - p) + p + 1;
     swap(A[i], A[r]);
     return Partition(A, p , r);
 }
