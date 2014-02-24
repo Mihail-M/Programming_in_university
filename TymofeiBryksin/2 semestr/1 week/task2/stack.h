@@ -1,24 +1,32 @@
 #pragma once
-#include "stackelement.h"
-
-class Stack
+typedef double valueType;
+class stack
 {
 
 public:
 
-    Stack();
-    ~Stack();
+    stack();
+    ~stack();
 
     bool isEmpty();
 
-    void push(valueType x);
-    int pop();
-    void clear();
-    valueType top();
+    virtual void push(valueType x);
+    virtual valueType pop();
+    virtual void clear();
+    virtual valueType top();
     int Size();
 
-private:
-    int size;
-    StackElement *last;
+    valueType getKey() const;
+    void setKey(valueType value);
 
+protected:
+    int size;
+
+    struct StackElement
+    {
+        StackElement* prev;
+        double key;
+    };
+
+    StackElement *last;
 };
