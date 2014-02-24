@@ -4,6 +4,7 @@
 #include <locale>
 #include "stack.h"
 #include <iostream>
+#include "stackarr.h"
 
 using namespace std;
 
@@ -30,7 +31,7 @@ int priority(char c)
 }
 void makePolishNotation(char *inputStr, char *queueOut) {
     int counter = 0;
-    Stack *stack = new Stack();
+    stack *st = new stack();
 
     for (int i = 0; i < strlen(inputStr); i++) {
 
@@ -38,31 +39,31 @@ void makePolishNotation(char *inputStr, char *queueOut) {
             queueOut[counter++] = inputStr[i];
 
         if (isOperator(inputStr[i])) {
-            while (!stack->isEmpty() && isOperator(stack->top()) && (priority(inputStr[i]) <= priority(stack->top()))){
-                queueOut[counter++] = (char)stack->top();
-                stack->pop();
+            while (!st->isEmpty() && isOperator(st->top()) && (priority(inputStr[i]) <= priority(st->top()))){
+                queueOut[counter++] = (char)st->top();
+                st->pop();
             }
 
-            stack->push(inputStr[i]);
+            st->push(inputStr[i]);
         }
 
         if (inputStr[i] == '(')
-            stack->push(inputStr[i]);
+            st->push(inputStr[i]);
 
         if (inputStr[i] == ')') {
-            while (!stack->isEmpty() && stack->top() != '('){
-                queueOut[counter++] = (char)stack->top();
-                stack->pop();
+            while (!st->isEmpty() && st->top() != '('){
+                queueOut[counter++] = (char)st->top();
+                st->pop();
 
-                if((char)stack->top() == '(' )
-                    stack->pop();
+                if((char)st->top() == '(' )
+                    st->pop();
             }
         }
     }
 
-    while(!stack->isEmpty()){
-        queueOut[counter++] =  (char)stack->top();
-        stack->pop();
+    while(!st->isEmpty()){
+        queueOut[counter++] =  (char)st->top();
+        st->pop();
     }
     queueOut[counter++] = '\0';
 
@@ -72,7 +73,7 @@ void makePolishNotation(char *inputStr, char *queueOut) {
 double calculate(char *input)
 {
 
-    Stack calc;
+    stack calc;
     for (int i = 0; i < strlen(input); i++) {
         if(isdigit(input[i]))
             calc.push(input[i] - '0');
@@ -112,7 +113,6 @@ int main()
     printf("This beutiful calc calculate arithmetic expression\n");
     printf("Please enter arithmetic expression\n");
     scanf("%s", inputStr);
-
     makePolishNotation(inputStr, queueOut);
 
     printf("Answer is: %.7f\n\nBY BY=)", calculate(queueOut));

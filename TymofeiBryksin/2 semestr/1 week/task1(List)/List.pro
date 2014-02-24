@@ -5,10 +5,11 @@ CONFIG -= qt
 QMAKE_CXXFLAGS += -std=c++0x
 
 SOURCES += main.cpp \
-    listelement.cpp \
-    circulyr_list.cpp
+    circulyrList.cpp \
+    uncirculyrlist.cpp
+
 
 HEADERS += \
-    list.h \
-    listelement.h
+    circulyrList.h \
+    uncirculyrList.h
 

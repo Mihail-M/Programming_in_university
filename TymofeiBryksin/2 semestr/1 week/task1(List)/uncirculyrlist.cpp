@@ -1,101 +1,75 @@
 #include "uncirculyrlist.h"
 
-uncyrcularList::uncyrcularList()
+uncirculyrList::uncirculyrList()
 {
 }
 
-void uncyrcularList::push_back(valueType x)
+void uncirculyrList::push_back(valueType x)
 {
     ListElement *newElem = new ListElement;
-    newElem->setKey(x);
+    newElem->key = x;
     if (isEmpty()) {
 
         head = newElem;
-        head->setNext(nullptr);
+        head->next = nullptr;
         last = newElem;
-        last->setPrev(nullptr);
+        last->prev = nullptr;
 
     }
     else {
-        newElem->setPrev(last);
-        last->setNext(newElem);
+        newElem->prev = last;
+        last->next = newElem;
         last = newElem;
     }
     size++;
 }
 
-void uncyrcularList::push_front(valueType x)
+void uncirculyrList::push_front(valueType x)
 {
     ListElement *newElem = new ListElement;
-    newElem->setKey(x);
+    newElem->key = x;
 
     if (isEmpty()) {
         head = newElem;
         last = newElem;
     }
     else {
-        newElem->setNext(head);
-        head->setPrev(newElem);
+        newElem->next = head;
+        head->prev = newElem;
         head = newElem;
     }
     size++;
 }
 
 
-void uncyrcularList::pop_front()
+void uncirculyrList::pop_front()
 {
     if(!isEmpty()) {
         ListElement *temp = head;
-        head = head->getNext();
+        head = head->next;
 
         delete temp;
         size--;
     }
 }
 
-void uncyrcularList::pop_back()
+void uncirculyrList::pop_back()
 {
     if(!isEmpty()) {
         ListElement *temp = last;
-        last = last->getPrev();
+        last = last->prev;
         delete temp;
         size--;
     }
 }
 
-void uncyrcularList::insert(ListElement *pos, valueType x)
-{
-    ListElement *newElem = new ListElement;
-
-    newElem->setKey(x);
-    newElem->setNext(pos->getNext());
-    newElem->setPrev(pos);
-
-    pos->getNext()->setPrev(newElem);
-    pos->setNext(newElem);
-    size++;
-}
-
-void uncyrcularList::insert(ListElement *pos, int n, valueType x)
-{
-    for(int i = 0; i < n; i++) {
-
-        pos = pos->getNext();
-        ListElement *temp = pos;
-        pos->getPrev()->setNext(pos->getNext());
-        pos->getNext()->setPrev(pos->getPrev());
-        delete temp;
-        size--;
-    }
-}
-
-void uncyrcularList::erase(ListElement *pos)
+void uncirculyrList::erase(int pos)
 {
     if(!isEmpty()) {
-        pos = pos->getNext();
-        ListElement *temp = pos;
-        pos->getPrev()->setNext(pos->getNext());
-        pos->getNext()->setPrev(pos->getPrev());
+        ListElement *temp = getNListElem(pos);
+        temp = temp->next;
+        temp->prev->next = temp->next;
+        temp->next->prev = temp->prev;
         delete temp;
         size--;
     }

@@ -1,6 +1,6 @@
 #include <iostream>
 #include "circulyrList.h"
-#include "uncirculyrlist.h"
+#include "uncirculyrList.h"
 
 using namespace std;
 
@@ -8,7 +8,7 @@ int main()
 {
     cout << "Present: \n";
     circulyrList *l = new circulyrList();
-    uncyrcularList *l1 = new uncyrcularList();
+    uncirculyrList *l1 = new uncirculyrList();
 
     for(int i = 0 ;i < 10;i++){
         l->push_back(i);
@@ -19,9 +19,9 @@ int main()
 
     l->pop_back();
     l->pop_front();
-    l->insert(l->Last(), 3);
-    l->erase(l->Last());
+    l->show();
 
+    l->erase(15);
     l->show();
 
     for(int i = 0 ;i < 10;i++)
@@ -34,9 +34,9 @@ int main()
 
     cout << "\nSize of uncirculyr list:\n";
 
-    cout << l1->getSize() << endl;
+    cout << l1->Size() << endl;
 
-    l1->erase(l1->Head());
+
     l1->show();
 
     delete l;
