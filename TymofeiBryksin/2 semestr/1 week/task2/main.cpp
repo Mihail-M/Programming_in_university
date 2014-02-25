@@ -4,6 +4,7 @@
 #include <locale>
 #include "stack.h"
 #include <iostream>
+
 #include "stackarr.h"
 
 using namespace std;
