@@ -10,6 +10,7 @@ bool f(int a,int b){
 int main()
 {
     int n = 0;
+
     cout << "input n:\n";
 
     cin >> n;
@@ -22,7 +23,9 @@ int main()
 
     BubbleSorter A(a);
 
-    a =  A.getSortArray(0, 4, f);
+    a =  A.getSortArray(0, n - 1, f);
+
+    cout << "This is sorted array: \n";
 
     for(int i = 0; i < n; i++)
        cout << a[i] << " ";

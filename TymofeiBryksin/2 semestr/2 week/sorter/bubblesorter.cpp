@@ -1,11 +1,15 @@
-
-#include "bubblesorter.h"
 #include <iostream>
+#include "bubblesorter.h"
 
 
-BubbleSorter::BubbleSorter(int *Array)
+BubbleSorter::BubbleSorter(int *Array):Sorter(Array)
 {
     array = Array;
+}
+
+BubbleSorter::~BubbleSorter()
+{
+
 }
 
 int *BubbleSorter::getSortArray(int l, int r)
@@ -19,6 +23,7 @@ int *BubbleSorter::getSortArray(int l, int r, bool (*comp)(int, int))
     sort(l, r, comp);
     return array;
 }
+
 void swap(int &a, int &b) {
     int c = a;
     a = b;
@@ -60,5 +65,3 @@ void BubbleSorter::sort(int l, int r, bool (*comp)(int, int))
                 }
         }
 }
-
-
