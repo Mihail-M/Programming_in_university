@@ -1,3 +1,4 @@
+
 #include "bubblesorter.h"
 #include <iostream>
 
@@ -59,4 +60,5 @@ void BubbleSorter::sort(int l, int r, bool (*comp)(int, int))
                 }
         }
 }
+
 

@@ -1,7 +1,7 @@
 #pragma once
 #include "sorter.h"
 
-class BubbleSorter// : public Sorter
+class BubbleSorter : public Sorter
 {
 public:
       BubbleSorter(int *Array);
@@ -10,7 +10,6 @@ public:
 private:
       void sort(int l, int r);
       void sort(int l, int r, bool (*comp)(int, int) );
-      int *array;
+      //int *array;
 
 };
-
