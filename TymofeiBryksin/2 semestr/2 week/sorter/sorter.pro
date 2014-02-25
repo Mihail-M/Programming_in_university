@@ -5,9 +5,11 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     bubblesorter.cpp \
-    sorter.cpp
+    sorter.cpp \
+    quicksorter.cpp
 
 HEADERS += \
     sorter.h \
-    bubblesorter.h
+    bubblesorter.h \
+    quicksorter.h
 
