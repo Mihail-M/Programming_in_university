@@ -1,59 +1,21 @@
 #include "stack.h"
 
-stack::stack()
+Stack::Stack(): countOfElement(0), last(nullptr)
 {
-    size = 0;
-    last = nullptr;
 }
 
-stack::~stack()
+Stack::~Stack()
 {
-    clear();
-}
-void stack::clear()
-{
-    while(size != 0)
-        pop();
 }
 
-bool stack::isEmpty()
+bool Stack::isEmpty()
 {
-    return (size == 0);
+    return (countOfElement == 0);
 }
 
-void stack::push(valueType x)
+int Stack::size()
 {
-    StackElement *newElem = new StackElement();
-
-    newElem->key = x;
-    newElem->prev = last;
-    last = newElem;
-    size++;
-}
-
-valueType stack::pop()
-{
-    if (isEmpty())
-        return -1;
-    valueType key = last->key;
-    StackElement *temp = last;
-    last = temp->prev;
-    delete temp;
-    size--;
-    return key;
-}
-
-valueType stack::top()
-{
-    if(!isEmpty())
-        return last->key;
-
-    return -1;
-}
-
-int stack::Size()
-{
-    return size;
+    return countOfElement;
 }
 
 

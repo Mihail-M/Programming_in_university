@@ -3,12 +3,13 @@
 
 typedef double valueType;
 
-class stackArr : public stack
+class StackArr : public Stack
 {
 
 public:
-     stackArr();
+     StackArr();
      void push(valueType x);
+
      valueType pop();
      void clear();
      valueType top();

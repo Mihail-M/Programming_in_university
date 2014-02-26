@@ -1,28 +1,28 @@
 #include "stackarr.h"
 
-stackArr::stackArr()
+StackArr::StackArr()
 {
 }
 
-void stackArr::push(valueType x){
+void StackArr::push(valueType x){
 
-    a[size++] = x;
-
-}
-
-valueType stackArr::pop() {
-
-    return a[--size];
+    a[countOfElement++] = x;
 
 }
 
-void stackArr::clear(){
+valueType StackArr::pop() {
 
-    size = 0;
+    return a[--countOfElement];
 
 }
 
-valueType stackArr::top(){
+void StackArr::clear(){
 
-    return a[size - 1];
+    countOfElement = 0;
+
+}
+
+valueType StackArr::top(){
+
+    return a[countOfElement - 1];
 }

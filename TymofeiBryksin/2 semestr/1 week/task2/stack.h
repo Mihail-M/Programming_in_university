@@ -2,27 +2,26 @@
 
 typedef double valueType;
 
-class stack
+class Stack
 {
 
 public:
 
-    stack();
-    ~stack();
+    Stack();
+    ~Stack();
 
     bool isEmpty();
 
-    virtual void push(valueType x);
-    virtual valueType pop();
-    virtual void clear();
-    virtual valueType top();
-    int Size();
+    virtual void push(valueType x) = 0;
+    virtual valueType pop() = 0;
+    virtual void clear() = 0;
+    virtual valueType top() = 0;
 
-    valueType getKey() const;
-    void setKey(valueType value);
+    int size();
+
 
 protected:
-    int size;
+    int countOfElement;
 
     struct StackElement
     {
