@@ -1,69 +1,71 @@
-#include "uncirculyrlist.h"
+#include "acicliclist.h"
 
-uncirculyrList::uncirculyrList()
+AciclicList::AciclicList(): List()
 {
 }
 
-void uncirculyrList::push_back(valueType x)
+AciclicList::~AciclicList()
+{
+    clear();
+}
+
+
+
+void AciclicList::pushBack(valueType x)
 {
     ListElement *newElem = new ListElement;
     newElem->key = x;
     if (isEmpty()) {
-
-        head = newElem;
-        head->next = nullptr;
-        last = newElem;
-        last->prev = nullptr;
-
+        pushInit(newElem);
     }
     else {
         newElem->prev = last;
         last->next = newElem;
         last = newElem;
     }
-    size++;
+    countOfElements++;
 }
 
-void uncirculyrList::push_front(valueType x)
+void AciclicList::pushFront(valueType x)
 {
     ListElement *newElem = new ListElement;
     newElem->key = x;
 
     if (isEmpty()) {
-        head = newElem;
-        last = newElem;
+        pushInit(newElem);
+
     }
     else {
         newElem->next = head;
         head->prev = newElem;
         head = newElem;
     }
-    size++;
+    countOfElements++;
 }
 
 
-void uncirculyrList::pop_front()
+void AciclicList::popFront()
 {
     if(!isEmpty()) {
         ListElement *temp = head;
         head = head->next;
 
         delete temp;
-        size--;
+        countOfElements--;
     }
 }
 
-void uncirculyrList::pop_back()
+void AciclicList::popBack()
 {
     if(!isEmpty()) {
         ListElement *temp = last;
         last = last->prev;
         delete temp;
-        size--;
+        countOfElements--;
     }
 }
 
-void uncirculyrList::erase(int pos)
+void AciclicList::erase(int pos)
 {
     if(!isEmpty()) {
         ListElement *temp = getNListElem(pos);
@@ -71,6 +73,15 @@ void uncirculyrList::erase(int pos)
         temp->prev->next = temp->next;
         temp->next->prev = temp->prev;
         delete temp;
-        size--;
+        countOfElements--;
     }
+}
+
+
+void AciclicList::pushInit(List::ListElement *newElem)
+{
+    head = newElem;
+    last = newElem;
+    head->next = nullptr;
+    last->prev = nullptr;
 }
