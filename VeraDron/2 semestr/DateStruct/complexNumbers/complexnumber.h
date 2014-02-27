@@ -20,8 +20,8 @@ public:
     void setRealPart(double value);
 
 private:
-    double a; // действительная часть
-    double b; // мнимая часть
+    double re; // действительная часть
+    double im; // мнимая часть
 
     friend bool operator <(ComplexNumber &A, ComplexNumber &B);
     friend bool operator <= (ComplexNumber &A, ComplexNumber &B);
