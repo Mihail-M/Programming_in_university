@@ -10,6 +10,15 @@ public:
     valueType pop();
     void clear();
     valueType top();
+protected:
+
+    struct StackElement
+    {
+        StackElement* prev;
+        double key;
+    };
+
+    StackElement *last;
 
 };
 

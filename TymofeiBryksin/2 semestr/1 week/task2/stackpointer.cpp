@@ -1,6 +1,6 @@
 #include "stackpointer.h"
 
-StackPointer::StackPointer()
+StackPointer::StackPointer():last(nullptr)
 {
 }
 

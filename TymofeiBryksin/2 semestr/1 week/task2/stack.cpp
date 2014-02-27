@@ -1,11 +1,12 @@
 #include "stack.h"
 
-Stack::Stack(): countOfElement(0), last(nullptr)
+Stack::Stack(): countOfElement(0)
 {
 }
 
 Stack::~Stack()
 {
+
 }
 
 bool Stack::isEmpty()

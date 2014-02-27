@@ -22,12 +22,4 @@ public:
 
 protected:
     int countOfElement;
-
-    struct StackElement
-    {
-        StackElement* prev;
-        double key;
-    };
-
-    StackElement *last;
 };
