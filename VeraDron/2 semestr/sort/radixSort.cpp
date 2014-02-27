@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 
 
 using namespace std;
@@ -8,25 +9,35 @@ int digit(int a,int k)
         a /= 10;
     return a%10;
 }
+int countRadix(int a)
+{
+    int ans  = 0;
+    while(!a){
+        a /= 10;
+        ans++;
+    }
+    return ans;;
+}
 
 void radixSort(int *array, int n)
 {
-
+    int maxIteration = countRadix(*max_element(array, array + n));
     int **tempArray = new int*[10];
     for(int i = 0; i < 10; i++)
         tempArray[i] = new int[n];
 
-    for(int i =0 ; i < 10; i++)
+    for(int i = 0 ; i < 10; i++)
         for(int j = 0; j < n; j++)
             tempArray[i][j] = -1;
 
     int k = 0;
     int pos[10] = {0};
-    while(k < 100)
+    while(k <= maxIteration)
     {
         for (int i = 0; i < n; i++)
         {
-            tempArray[digit(array[i], k)][pos[digit(array[i], k)]++] = array[i];
+            int digitInd = digit(array[i], k);
+            tempArray[digitInd][pos[digitInd]++] = array[i];
         }
 
         k++;
@@ -38,15 +49,17 @@ void radixSort(int *array, int n)
                     array[q++] =  tempArray[i][j];
 
         for(int i = 0; i < 10; i++)
+        {
+            pos[i] = 0;
             for(int j = 0; j < n; j++)
             {
                 tempArray[i][j] = -1;
-                pos[i] = 0;
             }
+        }
     }
 
     for(int i = 0; i < 10; i++)
-        delete[] tempArray;
+        delete[] tempArray[i];
     delete tempArray;
 }
 
