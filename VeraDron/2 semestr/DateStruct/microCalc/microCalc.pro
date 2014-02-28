@@ -4,11 +4,11 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    stackpointer.cpp \
+    stackelement.cpp \
     stack.cpp
 
 HEADERS += \
-    stackpointer.h \
+    stackelement.h \
     stack.h
 
 QMAKE_CXXFLAGS += -std=c++0x

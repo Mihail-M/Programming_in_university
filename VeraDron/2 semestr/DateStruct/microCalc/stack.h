@@ -1,6 +1,5 @@
 #pragma once
-
-typedef double valueType;
+#include "stackelement.h"
 
 class Stack
 {
@@ -12,14 +11,14 @@ public:
 
     bool isEmpty();
 
-    virtual void push(valueType x) = 0;
-    virtual valueType pop() = 0;
-    virtual void clear() = 0;
-    virtual valueType top() = 0;
+    void push(valueType x);
+    int pop();
+    void clear();
+    valueType top();
+    int Size();
 
-    int size();
+private:
+    int size;
+    StackElement *last;
 
-
-protected:
-    int countOfElement;
 };
