@@ -18,21 +18,24 @@ void ComplexNumber::print()
 
 ComplexNumber ComplexNumber::ComplexNumber::operator +(ComplexNumber const &B)
 {
-    re += B.re, im += B.im;
-    return (*this);
+    ComplexNumber result;
+    result.re += B.re, result.im += B.im;
+    return result;
 }
 
 ComplexNumber ComplexNumber::operator -(ComplexNumber const &B)
 {
-    re -= B.re, im -= B.im;
-    return (*this);
+    ComplexNumber result;
+    result.re -= B.re, result.im -= B.im;
+    return result;
 
 }
 
 ComplexNumber ComplexNumber::operator *(ComplexNumber const &B)
 {
-    re = re * B.re - im * B.im, im = re * B.re + im * B.re;
-    return (*this);
+    ComplexNumber result;
+    result.re = re * B.re - im * B.im, result.im = re * B.re + im * B.re;
+    return result;
 }
 
 ComplexNumber ComplexNumber::operator ~()
