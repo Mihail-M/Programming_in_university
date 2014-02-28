@@ -4,9 +4,10 @@ using namespace std;
 
 const int sizeArr = 10000;
 
+template <class T>
 struct heap
 {
-    int value[sizeArr];
+    T value[sizeArr];
     int length = 0;
     void heapify(int root)
     {
@@ -14,11 +15,13 @@ struct heap
         int right = 2 * root + 2;
         int largest  = root;
 
-        if (left <= length && value[left] > value[largest ])
-            root = left;
+        if (left <= length && value[left] > value[root])
+            largest = left;
+        else
+            largest = root;
 
-        if (right <= length && value[right] > value[largest ])
-            root = right;
+        if (right <= length && value[right] > value[largest])
+            largest = right;
 
         if (largest != root)
         {
@@ -40,7 +43,7 @@ struct heap
         heapify(n);
     }
 
-    void heapsort(int (&answer)[sizeArr])
+    void heapsort(T (&answer)[sizeArr])
     {
         while (length)
         {
@@ -58,7 +61,7 @@ int main()
     cout << "Input size of your array: ";
     cin >> n;
 
-    heap arr;
+    heap <int> arr;
     int answer[sizeArr];
     cout << "Input array: ";
 

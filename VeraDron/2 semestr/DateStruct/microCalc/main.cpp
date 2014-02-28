@@ -3,6 +3,7 @@
 #include <cstring>
 
 using namespace std;
+
 double toDouble(char *a){
     double ans = 0;
     int n = strlen(a);
