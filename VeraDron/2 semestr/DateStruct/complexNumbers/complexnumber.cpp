@@ -35,6 +35,12 @@ ComplexNumber ComplexNumber::operator *(ComplexNumber const &B)
     return (*this);
 }
 
+ComplexNumber ComplexNumber::operator ~()
+{
+    im = -im;
+    return (*this);
+}
+
 bool operator <=(ComplexNumber &A, ComplexNumber &B)
 {
     return (A.re < B.re || A.re == B.re && A.im <= B.im);

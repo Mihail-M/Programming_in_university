@@ -31,9 +31,8 @@ int main()
     ComplexNumber a(1,2), b(1,34);
     a = a+b-b;
     a.print();
-    a = a*b;
+    a = ~a;
     a.print();
-
     int n;
     cout << "input n: ";
     cin >> n;

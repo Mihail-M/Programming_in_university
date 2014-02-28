@@ -12,6 +12,7 @@ public:
     ComplexNumber operator +(ComplexNumber const &B);
     ComplexNumber operator -(ComplexNumber const &B);
     ComplexNumber operator *(ComplexNumber const &B);
+    ComplexNumber operator ~();
 
     double getImaginaryPart() const;
     void setImaginaryPart(double value);
