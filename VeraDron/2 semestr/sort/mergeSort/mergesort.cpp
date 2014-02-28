@@ -5,12 +5,12 @@
 
 using namespace std;
 
-
 template <class T>
 void merge(T *a,int l, int m, int r){
 
-    int i = l, j = m + 1, pres = l;
+    int i = l, j = m + 1, pres = 0;
     T *b = new T[r-l+1];
+
     while (i<=m && j<=r)
         if (a[i] < a[j])
 		    b[pres++] = a[i++];
@@ -24,7 +24,7 @@ void merge(T *a,int l, int m, int r){
         b[pres++] = a[j++];
 
     for (int k = l; k <= r; k++)
-        a[k] = b[k];
+        a[k] = b[k - l];
     delete[] b;
 }
 
