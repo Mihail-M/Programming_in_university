@@ -4,7 +4,6 @@
 
 BubbleSorter::BubbleSorter(int *Array):Sorter(Array)
 {
-    array = Array;
 }
 
 BubbleSorter::~BubbleSorter()
@@ -40,7 +39,7 @@ void BubbleSorter::sort(int l, int r, bool (*comp)(int, int))
             swapped = false;
             i++;
             for(int j = 0; j < n - i; j++)
-                if( (*comp)(array[j], array[j+1]))
+                if( !(*comp)(array[j], array[j+1]))
                 {
                     swap(array[j], array[j+1]);
                     swapped = true;

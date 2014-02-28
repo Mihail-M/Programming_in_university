@@ -4,7 +4,6 @@
 
 QuickSorter::QuickSorter(int *Array):Sorter(Array)
 {
-    array = Array;
 }
 
 QuickSorter::~QuickSorter()
@@ -19,7 +18,7 @@ void QuickSorter::sort(int l, int r)
     int x, i, j;
     i = l;
     j = r;
-    x = array[rand() % (r + 1)];
+    x = array[rand() % (r - l + 1) + l];
     while (i <= j)
     {
         while (array[i] < x)
