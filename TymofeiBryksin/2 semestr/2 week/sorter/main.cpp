@@ -2,10 +2,11 @@
 #include "bubblesorter.h"
 #include "mergesorter.h"
 
+
 using namespace std;
 
 bool f(int a,int b) {
-    return a > b;
+    return a  <= b;
 }
 
 int main()
@@ -22,18 +23,18 @@ int main()
     for(int i = 0 ;i < n; i++)
         cin >> a[i];
 
-    BubbleSorter A(a);
-    MergeSorter B(a);
+    BubbleSorter A;
+    MergeSorter B;
 
-    a =  A.getSortArray(0, n - 1, f);
+    A.sort(a, 0, n-1);
 
     cout << "This is bubblesorted array: \n";
 
     for(int i = 0; i < n; i++)
        cout << a[i] << " ";
 
+    B.sort(a, 0, n - 1);
     cout << "\nThis is mergesorted array: \n";
-    a =  B.getSortArray(0, n - 1, f);
 
     for(int i = 0; i < n; i++)
        cout << a[i] << " ";

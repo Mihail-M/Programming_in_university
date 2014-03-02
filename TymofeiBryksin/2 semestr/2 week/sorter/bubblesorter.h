@@ -4,10 +4,8 @@
 class BubbleSorter : public Sorter
 {
 public:
-      BubbleSorter(int *Array);
+      BubbleSorter();
       ~BubbleSorter();
-
-private:
-      void sort(int l, int r);
-      void sort(int l, int r, bool (*comp)(int, int) );
+      void sort(int *array, int l, int r);
+      void sort(int *array, int l, int r, bool (*comp)(int, int) );
 };

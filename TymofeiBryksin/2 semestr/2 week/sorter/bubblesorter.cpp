@@ -2,7 +2,7 @@
 #include "bubblesorter.h"
 
 
-BubbleSorter::BubbleSorter(int *Array):Sorter(Array)
+BubbleSorter::BubbleSorter()
 {
 }
 
@@ -11,7 +11,7 @@ BubbleSorter::~BubbleSorter()
 
 }
 
-void BubbleSorter::sort(int l, int r)
+void BubbleSorter::sort(int *array, int l, int r)
 {
     bool swapped = true;
     int i = 0;
@@ -29,7 +29,7 @@ void BubbleSorter::sort(int l, int r)
     }
 }
 
-void BubbleSorter::sort(int l, int r, bool (*comp)(int, int))
+void BubbleSorter::sort(int *array, int l, int r, bool (*comp)(int, int))
 {
     bool swapped = true;
         int i = 0;
