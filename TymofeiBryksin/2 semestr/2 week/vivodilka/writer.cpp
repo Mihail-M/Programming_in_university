@@ -13,7 +13,7 @@ Writer::~Writer()
 
 int *Writer::getAns(int n, int **array)
 {
-    int *ans = new int[n * n - 1];
+    int *ans = new int[n * n];
 
     int centerPosition = n / 2;
     int deviation = 0;
