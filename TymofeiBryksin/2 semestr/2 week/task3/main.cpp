@@ -5,7 +5,7 @@ using namespace std;
 bool f(int *a, int *b){
     return a[0] > b[0];
 }
-int** transposeMatrix(int **arr, int &n, int &m) {//не знаю как передать этот двумерный массив по ссылке, чтобы делать void
+int** transposeMatrix(int **arr, int &n, int &m) {//не знаю как передать этот двумерный массив по ссылке, чтобы сделать void
 
     int **b = new int*[m];
     for(int i = 0; i < m; i++)
@@ -16,6 +16,7 @@ int** transposeMatrix(int **arr, int &n, int &m) {//не знаю как пер�
             b[j][i] = arr[i][j];
     for(int i = 0; i < n; i++)
         delete[] arr;
+
     swap(n, m);
     return b;
 }
@@ -44,9 +45,8 @@ int main()
     cout << endl;
 
     for(int i= 0; i < n; i++, cout << endl)
-        for(int j =0 ;j < m;j ++)
+        for(int j = 0 ;j < m; j++)
            cout << a[i][j] << " ";
-
 
     return 0;
 }
