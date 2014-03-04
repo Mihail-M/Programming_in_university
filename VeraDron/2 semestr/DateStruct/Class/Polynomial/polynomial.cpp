@@ -37,7 +37,7 @@ void Polynomial::print()
 Polynomial Polynomial::operator +(const Polynomial &B)
 {
     Polynomial C;
-    for(int i = 0; i < MAX; i++)
+    for(int i = 0; i <= MAX; i++)
         C.factor[i] = factor[i] + B.factor[i];
     return C;
 
@@ -57,8 +57,8 @@ Polynomial Polynomial::operator *(const Polynomial &B)
     Polynomial C;
     for(int i = 0; i < MAX; i++){
         for(int j = 0; j < MAX; j++){
-            if(B.factor[j])
-            C.factor[i+j] += factor[i]*B.factor[j];
+            if(B.factor[j] && i+j <= MAX)
+                C.factor[i+j] += factor[i]*B.factor[j];
         }
     }
     return C;

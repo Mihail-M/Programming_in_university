@@ -1,5 +1,5 @@
 #pragma once
-const int MAX = 10;
+const int MAX = 20;
 
 class Polynomial
 {

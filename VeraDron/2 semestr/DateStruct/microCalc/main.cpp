@@ -70,6 +70,9 @@ int main(int argc, char *argv[])
     }
 
     cout << calculate(input, operand, iterDouble, iterOper) << endl;
+    delete[] input;
+    delete[] operand;
+
     return 0;
 }
 
