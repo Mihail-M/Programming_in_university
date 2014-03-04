@@ -28,11 +28,11 @@ void bubbleSort(T *array, int l, int r)
 int main()
 {
     srand(time(NULL));
+
     ComplexNumber a(1,2), b(1,34);
-    a = a+b-b;
-    a.print();
-    a = ~a;
-    a.print();
+    ComplexNumber c = a + b;
+    c.print();
+
     int n;
     cout << "input n: ";
     cin >> n;
@@ -48,7 +48,6 @@ int main()
         complexArray[i].print();
     }
     delete[] complexArray;
-
 
     return 0;
 }

@@ -19,14 +19,14 @@ void ComplexNumber::print()
 ComplexNumber ComplexNumber::ComplexNumber::operator +(ComplexNumber const &B)
 {
     ComplexNumber result;
-    result.re += B.re, result.im += B.im;
+    result.re = re + B.re, result.im = im + B.im;
     return result;
 }
 
 ComplexNumber ComplexNumber::operator -(ComplexNumber const &B)
 {
     ComplexNumber result;
-    result.re -= B.re, result.im -= B.im;
+    result.re = re - B.re, result.im = im - B.im;
     return result;
 
 }
@@ -34,14 +34,16 @@ ComplexNumber ComplexNumber::operator -(ComplexNumber const &B)
 ComplexNumber ComplexNumber::operator *(ComplexNumber const &B)
 {
     ComplexNumber result;
-    result.re = re * B.re - im * B.im, result.im = re * B.re + im * B.re;
+    result.re = re * B.re - im * B.im, result.im = re * B.im + im * B.re;
     return result;
 }
 
 ComplexNumber ComplexNumber::operator ~()
 {
-    im = -im;
-    return (*this);
+    ComplexNumber c;
+    c.re = re, c.im = -im;
+
+    return c;
 }
 
 bool operator <=(ComplexNumber &A, ComplexNumber &B)

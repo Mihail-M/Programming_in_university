@@ -7,10 +7,10 @@ public:
     void push(int d);
     int pop();
     int front();
-    bool clear();
+    void clear();
     bool isEmpty();
     int size() const;
-
+    bool full();
 protected:
     int m_size;
     int array[MAX_SIZE];

@@ -6,11 +6,13 @@ Queue::Queue(): m_size(0), begin(0), end(0)
 
 void Queue::push(int d)
 {
-    array[end] = d;
-    if(end + 1 >= MAX_SIZE)
-        end = 0;
-    else end++;
-    m_size++;
+    if(!full()){
+        array[end] = d;
+        if(end + 1 >= MAX_SIZE)
+            end = 0;
+        else end++;
+        m_size++;
+    }
 }
 
 int Queue::pop()
@@ -24,6 +26,7 @@ int Queue::pop()
         m_size--;
         return ans;
     }
+    return -1;
 }
 
 int Queue::front()
@@ -31,7 +34,7 @@ int Queue::front()
     return array[begin];
 }
 
-bool Queue::clear()
+void Queue::clear()
 {
     m_size = 0;
     begin = 0;
@@ -45,5 +48,10 @@ bool Queue::isEmpty()
 int Queue::size() const
 {
     return m_size;
+}
+
+bool Queue::full()
+{
+    return (m_size == MAX_SIZE);
 }
 

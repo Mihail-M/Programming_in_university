@@ -7,12 +7,12 @@ int digit(int a,int k)
 {
     for(int i =0 ; i <= k-1; i++)
         a /= 10;
-    return a%10;
+    return a % 10;
 }
 int countRadix(int a)
 {
     int ans  = 0;
-    while(!a){
+    while(a){
         a /= 10;
         ans++;
     }
@@ -60,7 +60,7 @@ void radixSort(int *array, int n)
 
     for(int i = 0; i < 10; i++)
         delete[] tempArray[i];
-    delete tempArray;
+    delete[] tempArray;
 }
 
 int main()
