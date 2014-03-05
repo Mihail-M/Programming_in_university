@@ -4,8 +4,8 @@
 class FileWriter : public Writer
 {
 public:
-    FileWriter();
-    ~FileWriter();
+     ~FileWriter();
+    ///print spiral walk in file
     void print(int n, int **array);
 
 };

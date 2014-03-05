@@ -5,7 +5,8 @@ using namespace std;
 bool f(int *a, int *b){
     return a[0] > b[0];
 }
-int** transposeMatrix(int **arr, int &n, int &m) {//не знаю как передать этот двумерный массив по ссылке, чтобы сделать void
+
+void transposeMatrix(int **&arr, int &n, int &m) {
 
     int **b = new int*[m];
     for(int i = 0; i < m; i++)
@@ -14,11 +15,12 @@ int** transposeMatrix(int **arr, int &n, int &m) {//не знаю как пер�
     for(int i = 0; i < n; i++)
         for(int j = 0; j < m; j++)
             b[j][i] = arr[i][j];
+
     for(int i = 0; i < n; i++)
-        delete[] arr;
+        delete[] arr[i];
+    arr = b;
 
     swap(n, m);
-    return b;
 }
 
 int main()
@@ -37,16 +39,17 @@ int main()
         for(int j =0 ;j < m;j ++)
             cin >> a[i][j];
 
-    a = transposeMatrix(a, n, m);
+    transposeMatrix(a, n, m);
 
     BubbleSorter A;
     A.sort(a, 0, n-1, f);
-    a = transposeMatrix(a, n, m);
-    cout << endl;
+
+    transposeMatrix(a, n, m);
 
     for(int i= 0; i < n; i++, cout << endl)
         for(int j = 0 ;j < m; j++)
            cout << a[i][j] << " ";
+
 
     return 0;
 }

@@ -2,14 +2,11 @@
 #include "bubblesorter.h"
 
 
-BubbleSorter::BubbleSorter()
-{
-}
-
 BubbleSorter::~BubbleSorter()
 {
 
 }
+
 void BubbleSorter::swap(int *&a, int *&b) {
     int *c = a;
     a = b;

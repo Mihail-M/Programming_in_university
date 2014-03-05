@@ -1,10 +1,6 @@
 #include "filewriter.h"
 #include "fstream"
 
-FileWriter::FileWriter()
-{
-
-}
 
 FileWriter::~FileWriter()
 {

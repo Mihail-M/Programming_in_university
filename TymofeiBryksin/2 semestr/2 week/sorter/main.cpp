@@ -6,7 +6,7 @@
 using namespace std;
 
 bool f(int a,int b) {
-    return a  <= b;
+    return a  >  b;
 }
 
 int main()
@@ -33,12 +33,13 @@ int main()
     for(int i = 0; i < n; i++)
        cout << a[i] << " ";
 
-    B.sort(a, 0, n - 1);
+    B.sort(a, 0, n - 1, f);
     cout << "\nThis is mergesorted array: \n";
 
     for(int i = 0; i < n; i++)
        cout << a[i] << " ";
 
+    delete[] a;
     return 0;
 }
 

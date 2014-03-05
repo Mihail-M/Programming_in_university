@@ -1,11 +1,5 @@
-#include "ConsoleWriter.h"
+#include "consolewriter.h"
 #include <iostream>
-
-
-ConsoleWriter::ConsoleWriter()
-{
-
-}
 
 ConsoleWriter::~ConsoleWriter()
 {

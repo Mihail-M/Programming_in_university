@@ -5,8 +5,8 @@
 class ConsoleWriter : public Writer
 {
 public:
-    ConsoleWriter();
     ~ConsoleWriter();
 
+    ///print spiral walk in console
     void print(int n, int **array);
 };
