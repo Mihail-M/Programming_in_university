@@ -18,6 +18,7 @@ void transposeMatrix(int **&arr, int &n, int &m) {
 
     for(int i = 0; i < n; i++)
         delete[] arr[i];
+    delete[] arr;
     arr = b;
 
     swap(n, m);
