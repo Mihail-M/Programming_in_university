@@ -31,13 +31,13 @@ int main()
     cin >> n >> m;
 
     int **a = new int*[n];
-    for(int i= 0; i < n; i++)
+    for(int i = 0; i < n; i++)
         a[i] = new int[m];
 
     cout << "input matrix:\n";
 
-    for(int i= 0; i< n; i++)
-        for(int j =0 ;j < m;j ++)
+    for(int i = 0; i < n; i++)
+        for(int j = 0; j < m; j++)
             cin >> a[i][j];
 
     transposeMatrix(a, n, m);
@@ -48,7 +48,7 @@ int main()
     transposeMatrix(a, n, m);
 
     for(int i= 0; i < n; i++, cout << endl)
-        for(int j = 0 ;j < m; j++)
+        for(int j = 0; j < m; j++)
            cout << a[i][j] << " ";
 
 
