@@ -1,9 +1,9 @@
 #include <iostream>
 #include "stackpointer.h"
 #include <cstring>
+#include <algorithm>
 
 using namespace std;
-
 double toDouble(char *a){
     double ans = 0;
     int n = strlen(a);
@@ -14,65 +14,58 @@ double toDouble(char *a){
     }
     return ans;
 }
-enum operandUser{ ADDITION = '+', SUBTRACT = '-', MULTIPLICATION = '*', DIVISION = '/' };
 
-double calculate(double *input,char *operand, int countNumber, int countOperand)
+bool equivalent(double a, double b){
+    return abs(a-b) <= 1e-10;
+}
+
+double calculate(double *input, int n)
 {
 
     StackPointer calc;
-    for (int i = 0; i < countNumber; i++)
-        calc.push(input[i]);
+    for (int i = 0; i < n; i++) {
+        if (input[i] >= 0)
+            calc.push(input[i]);
+        else {
+            double second = calc.pop();
+            double first = calc.pop();
+            double key = input[i];
 
-    for(int i = countOperand - 1; i >= 0; i--)
-    {
-        double second = calc.pop();
-        double first = calc.pop();
+            if(equivalent(key, -3))
+                calc.push(first * second);
 
-        operandUser key = static_cast<operandUser>(operand[i]);
+            if(equivalent(key, -4))
+                calc.push(first / second);
 
-        switch (key) {
-        case MULTIPLICATION:
-            calc.push(first * second);
-            break;
-        case DIVISION:
-            calc.push(first / second);
-            break;
-        case ADDITION:
-            calc.push(first + second);
-            break;
-        case SUBTRACT:
-            calc.push(first - second);
-            break;
+            if(equivalent(key, -1))
+                calc.push(first + second);
 
-        default:
-            printf("Sorry(\n");
-            break;
+            if(equivalent(key, -2))
+                calc.push(first - second);
         }
     }
-
     double result = calc.top();
     return result;
 }
-
 int main(int argc, char *argv[])
 {
     double *input = new double[argc-1];
-    char *operand = new char[argc-1];
-
-    int iterDouble = 0, iterOper = 0;
 
     for(int i = 1; i < argc; i++) {
         if(isdigit(argv[i][0]))
-            input[iterDouble++] = toDouble(argv[i]);
+            input[i-1] = toDouble(argv[i]);
         else {
-            operand[iterOper++] = argv[i][0];
+            if(argv[i][0] == '+')
+                input[i-1] = -1;
+            if(argv[i][0] == '-')
+                input[i-1] = -2;
+            if(argv[i][0] == '*')
+                input[i-1] = -3;
+            if(argv[i][0] == '/')
+                input[i-1] = -4;
         }
     }
 
-    cout << calculate(input, operand, iterDouble, iterOper) << endl;
-    delete[] input;
-    delete[] operand;
-
+    cout << calculate(input, argc - 1) << endl;
     return 0;
 }
-
