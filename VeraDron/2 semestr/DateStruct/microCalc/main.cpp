@@ -67,5 +67,7 @@ int main(int argc, char *argv[])
     }
 
     cout << calculate(input, argc - 1) << endl;
+    delete[] input;
+    
     return 0;
 }
