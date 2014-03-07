@@ -23,15 +23,12 @@ Widget::~Widget()
 
 void Widget::setValue()
 {
-    QString ans;
-    if (ui->comboBox->currentText() == "+")
-        ans = QString::number((ui->spinBox->text().toDouble() + ui->spinBox_2->text().toDouble()));
-    if (ui->comboBox->currentText() == "-")
-        ans = QString::number((ui->spinBox->text().toDouble() - ui->spinBox_2->text().toDouble()));
-    if (ui->comboBox->currentText() == "*")
-        ans = QString::number((ui->spinBox->text().toDouble() * ui->spinBox_2->text().toDouble()));
-    if (ui->comboBox->currentText() == "/")
-        ans = QString::number((ui->spinBox->text().toDouble() / ui->spinBox_2->text().toDouble()));
+    double a = ui->spinBox->text().toDouble();
+    double b = ui->spinBox_2->text().toDouble();
+
+    char operand = (char)ui->comboBox->currentText().toStdString()[0];
+
+    QString ans = QString::number(calc.calculate(a, b, operand));
 
     ui->lineEdit->setText(ans);
 }

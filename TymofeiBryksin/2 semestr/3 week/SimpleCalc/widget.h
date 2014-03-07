@@ -1,6 +1,5 @@
-#ifndef WIDGET_H
-#define WIDGET_H
-
+#pragma once
+#include "counter.h"
 #include <QWidget>
 
 namespace Ui {
@@ -20,6 +19,7 @@ public slots:
 
 private:
     Ui::Widget *ui;
+    Counter calc;
+
 };
 
-#endif // WIDGET_H
