@@ -4,6 +4,10 @@
 #include "calcrobot.h"
 
 namespace Ui {
+/**
+ *@Class Calc
+ * отвечает за вывод на виджет информации, используя класс для вычисления ClassRobot
+ */
 class Calc;
 }
 
@@ -14,18 +18,28 @@ class Calc : public QWidget
 public:
     explicit Calc(QWidget *parent = 0);
     ~Calc();
-    CalcRobot calcRobot;
+
+private slots:
+    ///метод, обрабатывающий нажание на кнопку с цифрой
+    void numberPressed(int const number);
+    ///метод, обрабатывающий нажание на кнопку с точкой
+    void dotPressed();
+    ///метод, обрабатывающий нажатие на кнопку равно
+    void equalPressed();
+    ///метод, обрабатывающий нажатие на кнопку +,-,*,/
+    void operandPressed(int operand);
+    ///Очищает поле результата и CalcRobot
+    void clearCalc();
+
 private:
     Ui::Calc *ui;
     QSignalMapper *numbersMapper;
     QSignalMapper *operationMapper;
+    ///отвечает за вычисления
+    CalcRobot calcRobot;
 
-private slots:
-    void numberPressed(int const number);
-    void dotPressed();
-    void equalPressed();
-    void operandPressed(int operand);
-    void clearCalc();
+
+
 
 
 };

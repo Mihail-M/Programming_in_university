@@ -6,6 +6,7 @@ Widget::Widget(QWidget *parent) :
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
+
     ui->comboBox->addItem("+");
     ui->comboBox->addItem("-");
     ui->comboBox->addItem("*");
@@ -13,7 +14,6 @@ Widget::Widget(QWidget *parent) :
     connect(ui->spinBox, SIGNAL(valueChanged(int)), this, SLOT(setValue()));
     connect(ui->spinBox_2, SIGNAL(valueChanged(int)), this, SLOT(setValue()));
     connect(ui->comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setValue()));
-
 }
 
 Widget::~Widget()
