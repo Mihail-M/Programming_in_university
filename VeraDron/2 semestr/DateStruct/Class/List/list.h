@@ -1,6 +1,8 @@
 #pragma once
 typedef int valueType;
-
+///
+/// \brief The List class
+///
 class List
 {
 
@@ -19,19 +21,24 @@ public:
     virtual void reverse() = 0;
     /// удаляет элемент c номером pos, либо последний
     virtual void erase(int pos) = 0;
-    /// вставляет элемент в произвольную позицию
+    /// вставляет элемент после pos
     virtual void add(int pos, int x) = 0;
 
-    int &back();
-    int &front();
+    ///возвращает ссылку на значение последнего элемента
+    valueType &back();
+    ///возвращает ссылку на значение первого элемента
+    valueType &front();
+    ///очищает список
     void clear();
+    ///если список пуст возращает true
     bool isEmpty();
+    ///выводит список на экран
     void show();
-
+    ///возращает размер списка
     int size() const;
 
 protected:
-
+    ///вспомогательная структура( элемент списка)
     struct ListElement {
         valueType key;
         ListElement *next;
@@ -41,7 +48,11 @@ protected:
     ListElement *head;
     ListElement *last;
     int countOfElements;
+    /// возвращает pos-й элемент списка
 
-    ListElement *getNListElem(int pos); // возвращает pos-й элемент списка
+    ListElement *getNListElem(int pos);
+ private:
+    List(List &a);
+    List &operator = (List const &b);
 };
 

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <cstdlib>
 
 template <class T>
@@ -69,7 +69,7 @@ template <class T>
 Array<T> &Array<T>::operator=(Array<T> &a)
 {
     //добавить проверку
-    if(*this == a) return *this;
+    if(this == &a) return *this;
     size = a.size;
     delete[] p;
     p = new T[size];

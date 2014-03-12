@@ -15,14 +15,13 @@ int main()
     }
 
     long long ans = 0;
-
-    while(!a->isEmpty()){
+    while(!a->isEmpty()) {
         ans += a->front()*a->back();
         a->popFront();
         a->popBack();
     }
 
-    cout << ans << endl;
+    cout << ans;
     delete a;
 
 }

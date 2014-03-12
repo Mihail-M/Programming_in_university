@@ -50,9 +50,15 @@ void AciclicList::popFront()
 {
     if(!isEmpty()) {
         ListElement *temp = head;
-        if(countOfElements != 1)
+        if(countOfElements == 1){
+            last = nullptr;
+            head = nullptr;
+        }
+        else
+        {
             head = head->next;
-        head->prev = nullptr;
+            head->prev = nullptr;
+        }
         delete temp;
         countOfElements--;
 
@@ -64,10 +70,16 @@ void AciclicList::popBack()
 
     if(!isEmpty()) {
         ListElement *temp = last;
-        if(countOfElements!=1){
+        if(countOfElements == 1){
+            last = nullptr;
+            head = nullptr;
+        }
+        else
+        {
             last = last->prev;
-            last->next = nullptr;}
+            last->next = nullptr;
 
+        }
         delete temp;
         countOfElements--;
     }
@@ -89,14 +101,21 @@ void AciclicList::reverse()
 
 void AciclicList::erase(int pos)
 {
-    if(!isEmpty()) {
-        ListElement *temp = getNListElem(pos);
-        temp = temp->next;
-        temp->prev->next = temp->next;
-        temp->next->prev = temp->prev;
-        delete temp;
-        countOfElements--;
-    }
+
+    if(isEmpty()) return;
+    if (pos == 0) popFront();
+    else
+        if (pos >= countOfElements - 1)
+            popBack();
+        else
+        {
+            ListElement *temp = getNListElem(pos);
+            if(temp == head->next) std::cout << 123<< std::endl;
+            temp->prev->next = temp->next;
+            temp->next->prev = temp->prev;
+            delete temp;
+            countOfElements--;
+        }
 }
 
 void AciclicList::add(int pos, int x)

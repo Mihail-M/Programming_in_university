@@ -11,12 +11,12 @@ List::~List()
 
 }
 
-int &List::back()
+valueType &List::back()
 {
     return last->key;
 }
 
-int &List::front()
+valueType &List::front()
 {
     return head->key;
 }

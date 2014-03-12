@@ -19,4 +19,6 @@ public:
 
 private:
     void pushInit(ListElement *newElem); //вставляет в пустой список первый элемент
+    AciclicList(AciclicList &a);
+    AciclicList &operator = (AciclicList const &b);
 };
