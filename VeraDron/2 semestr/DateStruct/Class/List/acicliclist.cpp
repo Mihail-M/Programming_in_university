@@ -106,7 +106,7 @@ void AciclicList::add(int pos, int x)
         pushBack(x);
         return;
     }
-    std::cout << "fuck";
+    
     ListElement *newElem = new ListElement;
     newElem->key = x;
     ListElement *current = getNListElem(pos);
