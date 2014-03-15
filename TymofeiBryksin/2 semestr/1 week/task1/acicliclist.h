@@ -9,13 +9,17 @@ public:
     AciclicList();
     ~AciclicList();
 
-    void pushBack(valueType x);// добавляет к концу списка
-    void pushFront(valueType x);//добавляет в начало списка
-    void popFront();//удаляет первый элемент в списке
-    void popBack();//удаляет последний элемент в списке
-
-    void erase(int pos);// удаляет элемент c номером pos
+    void pushBack(valueType x);
+    void pushFront(valueType x);
+    void popFront();
+    void popBack();
+    void reverse();
+    void erase(int pos);
+    void erase(valueType x);
+    void add(int pos, valueType x);
 
 private:
     void pushInit(ListElement *newElem); //вставляет в пустой список первый элемент
+    ListElement *getNListElem(int pos);
+
 };

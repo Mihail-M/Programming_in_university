@@ -125,7 +125,6 @@ void AciclicList::erase(valueType x)
 
 void AciclicList::add(int pos, valueType x)
 {
-
     if(pos >= countOfElements - 1 || isEmpty()){
         pushBack(x);
         return;

@@ -1,8 +1,7 @@
 #pragma once
 #include "list.h"
-#include <string>
 
-typedef std::string valueType;
+typedef double valueType;
 
 class AciclicList : public List
 {

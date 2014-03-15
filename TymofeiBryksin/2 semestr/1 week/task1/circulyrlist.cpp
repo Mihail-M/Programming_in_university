@@ -75,6 +75,20 @@ void CirculyrList::popBack()
     }
 }
 
+void CirculyrList::reverse()
+{
+    if(isEmpty()) return;
+
+    pushFront(back());
+    popBack();
+
+    for(int i = 0; i < countOfElements; i++)
+    {
+        add(i, back());
+        popBack();
+    }
+}
+
 void CirculyrList::erase(int pos)
 {
 
@@ -94,6 +108,31 @@ void CirculyrList::erase(int pos)
     }
 }
 
+void CirculyrList::erase(valueType x)
+{
+    int pos = getIndListElemWithKey(x);
+    if(pos != -1)
+        erase(pos);
+}
+
+void CirculyrList::add(int pos, valueType x)
+{
+    if(isEmpty()){
+        pushBack(x);
+        return;
+    }
+
+    ListElement *newElem = new ListElement;
+    newElem->key = x;
+    ListElement *current = getNListElem(pos);
+    newElem->next = current->next;
+    current->next->prev = newElem;
+    newElem->prev = current;
+    current->next = newElem;
+
+    countOfElements++;
+}
+
 void CirculyrList::pushInit(List::ListElement *newElem)
 {
     newElem->next = newElem;
@@ -101,4 +140,15 @@ void CirculyrList::pushInit(List::ListElement *newElem)
 
     head = newElem;
     last = newElem;
+}
+
+List::ListElement *CirculyrList::getNListElem(int pos)
+{
+    ListElement *temp = head;
+    for(int i = 0; i < pos; i++)
+    {
+        temp = temp->next;
+    }
+
+    return temp;
 }

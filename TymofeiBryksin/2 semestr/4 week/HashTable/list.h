@@ -1,7 +1,6 @@
 #pragma once
-#include <string>
-typedef std::string valueType;
-///
+typedef double valueType;
+
 /// \brief The List class
 ///first index - 0
 class List
@@ -10,12 +9,16 @@ class List
 public:
     List();
     virtual ~List();
+
     ///add x at tail of list
     virtual void pushBack(valueType x) = 0;
+
     ///add x at head of list
     virtual void pushFront(valueType x) = 0;
+
     ///delete first element in list
     virtual void popFront() = 0;
+
     ///delete last element in list
     virtual void popBack() = 0;
     ///reverse list
@@ -30,11 +33,14 @@ public:
     /// \brief find
     /// \return true if value exist, false if x not exist
     bool find(valueType x);
+
     ///return value of last element
     valueType &back();
+
     ///return value of head element
     valueType &front();
-    ///clear list
+
+    ///clear list 
     void clear();
     ///
     /// \brief isEmpty
@@ -62,7 +68,7 @@ protected:
     /// \brief getNListElem
     /// \param pos
     /// \return pos's element of
-    ///
+
     ListElement *getNListElem(int pos);
     ///return index element with key = x
     int getIndListElemWithKey(valueType x);

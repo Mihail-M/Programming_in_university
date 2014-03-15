@@ -1,12 +1,19 @@
 #include <iostream>
 #include "circulyrlist.h"
 #include "acicliclist.h"
+#include "testAciclicList.h"
+#include "testCicrculyrList.h"
 
 using namespace std;
 
 int main()
 {
-    cout << "Present: \n";
+    TestAciclicList test1;
+    QTest::qExec(&test1);
+    TestCirculyrList test2;
+    QTest::qExec(&test2);
+
+   /* cout << "Present: \n";
     CirculyrList *l = new CirculyrList();
     AciclicList *l1 = new AciclicList();
 
@@ -41,6 +48,6 @@ int main()
 
     delete l;
     delete l1;
-    return 0;
+    return 0;*/
 }
 

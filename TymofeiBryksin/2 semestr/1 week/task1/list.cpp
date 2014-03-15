@@ -3,7 +3,6 @@
 
 List::List(): head(nullptr), last(nullptr), countOfElements(0)
 {
-   // head = nullptr, last = nullptr, countOfElements = 0;
 }
 
 List::~List()
@@ -11,9 +10,30 @@ List::~List()
 
 }
 
+bool List::find(valueType x)
+{
+    if (isEmpty()) return 0;
+    ListElement *current = head;
+    for (int i = 0; i < countOfElements; i++, current = current->next)
+        if (current->key == x)
+            return 1;
+    return 0;
+
+}
+
+valueType &List::back()
+{
+    return last->key;
+}
+
+valueType &List::front()
+{
+    return head->key;
+}
+
 void List::clear()
 {
-    while(countOfElements != 0) {
+    while (countOfElements != 0) {
         popBack();
     }
 
@@ -28,8 +48,9 @@ void List::show()
 {
     ListElement *t = head;
 
-    for(int i = 0; i < countOfElements; i++, t = t->next)
+    for(int i = 0; i < countOfElements; i++,t = t->next)
     {
+
         std::cout << t->key << " ";
     }
 
@@ -42,14 +63,18 @@ int List::size() const
 
 }
 
-List::ListElement *List::getNListElem(int pos)
-{
-    ListElement *temp = head;
-    for(int i = 0; i < pos && i < countOfElements - 1; i++)
-    {
-        temp = temp->next;
-    }
 
-    return temp;
+
+int List::getIndListElemWithKey(valueType x)
+{
+    int pos = -1;
+    ListElement *current = head;
+    for (int i = 0; i < countOfElements; i++, current = current->next) {
+        if (current->key == x) {
+            pos = i;
+            return pos;
+        }
+    }
+    return pos;
 }
 

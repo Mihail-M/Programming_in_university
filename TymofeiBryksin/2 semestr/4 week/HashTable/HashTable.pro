@@ -1,16 +1,14 @@
 
-QT       += core
+QT += core
 
-QT       -= gui
+QT -= gui
+QT += testlib
 
 CONFIG   += console
 CONFIG   -= app_bundle
 
 TEMPLATE = app
-CONFIG += testlib
-//QT += QtTest
 QMAKE_CXXFLAGS += -std=c++11
-QT += core
 
 SOURCES += \
     main.cpp\
