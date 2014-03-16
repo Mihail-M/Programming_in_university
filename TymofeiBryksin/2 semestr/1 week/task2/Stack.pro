@@ -1,8 +1,16 @@
+
+QT       += core
+
+QT       -= gui
+
+QT       += testlib
+TARGET = List
+CONFIG   += console
+CONFIG   -= app_bundle
+
 TEMPLATE = app
-CONFIG += console
-CONFIG -= app_bundle
-CONFIG -= qt
-QMAKE_CXXFLAGS += -std=c++0x
+
+QMAKE_CXXFLAGS += -std=c++11
 
 SOURCES += main.cpp \
     stack.cpp \
@@ -14,7 +22,9 @@ HEADERS += \
     stack.h \
     stackarr.h \
     stackpointer.h \
-    calc.h
+    calc.h \
+    teststack.h \
+    testcalc.h
 
 
 
