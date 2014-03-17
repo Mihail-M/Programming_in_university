@@ -1,7 +1,7 @@
 #pragma once
 #include <QtCore/QObject>
 #include <QtTest/QtTest>
-#include "hashTable.h"
+#include "hashtable.h"
 #include <iostream>
 
 using namespace std;
@@ -28,7 +28,7 @@ private slots:
     {
         string str;
         simple = getHashFunction(1);
-        table->hashFunc = simple;
+        table->setHashFunction(simple);
         table->add(str);
         QCOMPARE(table->find(str), true);
         table->erase(str);
@@ -39,7 +39,7 @@ private slots:
     {
         string str;
         power = getHashFunction(2);
-        table->hashFunc = power;
+        table->setHashFunction(power);
         table->add(str);
         QCOMPARE(table->find(str), true);
         table->erase(str);
@@ -50,7 +50,7 @@ private slots:
     {
         string str = "test1";
         simple = getHashFunction(1);
-        table->hashFunc = simple;
+        table->setHashFunction(simple);
         table->add(str);
         QCOMPARE(table->find(str), true);
         str = "test4";
@@ -62,7 +62,7 @@ private slots:
     {
         string str = "test2";
         power = getHashFunction(2);
-        table->hashFunc = power;
+        table->setHashFunction(power);
         table->add(str);
         QCOMPARE(table->find(str), true);
         str = "test3";
@@ -74,7 +74,7 @@ private slots:
     {
         string str = "wow";
         simple = getHashFunction(1);
-        table->hashFunc = simple;
+        table->setHashFunction(simple);
         table->add(str);
         table->erase(str);
         QCOMPARE(!table->find(str), true);
@@ -84,7 +84,7 @@ private slots:
     {
         string str = "wow";
         power = getHashFunction(2);
-        table->hashFunc = power;
+        table->setHashFunction(power);
         table->add(str);
         table->erase(str);
         QCOMPARE(table->find(str), false);

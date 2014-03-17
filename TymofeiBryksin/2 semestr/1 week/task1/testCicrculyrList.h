@@ -122,5 +122,9 @@ private slots:
 
     }
 
+    void cleanupTestCase()
+    {
+        delete test;
+    }
 
 };

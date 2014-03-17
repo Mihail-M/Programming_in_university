@@ -111,6 +111,13 @@ void HashTable::showStatistic()
             add(temp[i]);
     }
 
+    
+    void HashTable::setHashFunction(HashFunction *value)
+    {
+        hashFunc = value;
+    }
+    
+    
     void HashTable::init(int size)
     {
         countOfElements = 0;

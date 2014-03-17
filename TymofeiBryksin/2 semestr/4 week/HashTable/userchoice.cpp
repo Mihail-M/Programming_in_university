@@ -18,7 +18,7 @@ void UserChoice::choice(HashTable *table)
 
     int choiceHashFunc = 2;
     cin >> choiceHashFunc;
-    table->hashFunc = getHashFunction(choiceHashFunc);
+    table->setHashFunction(getHashFunction(choiceHashFunc));
     cout << endl;
     int command = -1;
     while(command != 0)

@@ -10,8 +10,8 @@ int main()
     HashTable b;
     TestHashTable a;
     QTest::qExec(&a);
-    UserChoice с;
-    с.choice(&b);
+    UserChoice c;
+    c.choice(&b);
     return 0;
 }
 

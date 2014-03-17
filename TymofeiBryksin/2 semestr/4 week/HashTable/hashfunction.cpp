@@ -5,12 +5,11 @@
 HashFunction *getHashFunction(int n) {
     if (n == 1)
     {
-        HashFunction *f = new PrimitiveHashFunction;
-        return f;
+        return new PrimitiveHashFunction;
     }
     else
     {
-        HashFunction *f = new PowerHashFunction;
-        return f;
+        return new PowerHashFunction;
+
     }
 }

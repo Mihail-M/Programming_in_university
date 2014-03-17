@@ -1,11 +1,11 @@
 
 QT += core
+CONFIG   += console
+CONFIG   -= app_bundle
 
 QT -= gui
 QT += testlib
 
-CONFIG   += console
-CONFIG   -= app_bundle
 
 TEMPLATE = app
 QMAKE_CXXFLAGS += -std=c++11

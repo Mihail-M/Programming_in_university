@@ -45,4 +45,10 @@ private slots:
         test->clear();
         QVERIFY(test->size() == 0);
     }
+
+    void cleanupTestCase()
+    {
+        delete test;
+    }
+
 };

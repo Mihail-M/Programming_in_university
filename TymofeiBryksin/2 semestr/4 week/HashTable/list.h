@@ -1,5 +1,6 @@
 #pragma once
-typedef double valueType;
+#include <string>
+typedef std::string valueType;
 
 /// \brief The List class
 ///first index - 0

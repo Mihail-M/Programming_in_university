@@ -21,5 +21,11 @@ private slots:
         char testExp[] = {'1','+','2','*','3','/','3'};
         QVERIFY(test->calculate(testExp) == 3);
     }
+
+    void cleanupTestCase()
+    {
+        delete test;
+    }
+
 };
 

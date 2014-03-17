@@ -32,7 +32,8 @@ public:
     /// show count of elements, load factor, count of conflicts, max count of list in conflict elements, etc
     void showStatistic();
     void show();
-    HashFunction *hashFunc;
+
+    void setHashFunction(HashFunction *value);
 
 private:
     ///count element in hash table
@@ -44,6 +45,8 @@ private:
     double loadFactor;
     void init(int size);
     void rebuild(int size);
+    HashFunction *hashFunc;
+
 
 
 };
