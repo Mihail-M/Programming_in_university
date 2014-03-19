@@ -19,6 +19,7 @@ HashTable::~HashTable()
         array[i].clear();
     delete[] array;
     delete[] countOfCollision;
+    delete hashFunc;
 
 }
 
