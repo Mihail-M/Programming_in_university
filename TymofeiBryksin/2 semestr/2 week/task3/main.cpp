@@ -1,5 +1,7 @@
 #include <iostream>
 #include "bubblesorter.h"
+#include "testSorter.h"
+
 using namespace std;
 
 bool f(int *a, int *b){
@@ -26,6 +28,9 @@ void transposeMatrix(int **&arr, int &n, int &m) {
 
 int main()
 {
+    TestSorter test;
+    QTest::qExec(&test);
+
     int n = 0, m = 0;
     cout << "input n and m\n";
     cin >> n >> m;

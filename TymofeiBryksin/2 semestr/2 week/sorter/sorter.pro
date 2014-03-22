@@ -1,7 +1,19 @@
+#-------------------------------------------------
+#
+# Project created by QtCreator 2014-03-22T19:21:31
+#
+#-------------------------------------------------
+
+QT       += core
+
+QT       -= gui
+
+TARGET = sorter
+CONFIG   += console
+CONFIG   -= app_bundle
+QT += testlib
 TEMPLATE = app
-CONFIG += console
-CONFIG -= app_bundle
-CONFIG -= qt
+
 
 SOURCES += main.cpp \
     bubblesorter.cpp \
@@ -11,5 +23,6 @@ SOURCES += main.cpp \
 HEADERS += \
     sorter.h \
     bubblesorter.h \
-    mergesorter.h
+    mergesorter.h \
+    testsorter.h
 

@@ -2,12 +2,15 @@
 
 #include "consolewriter.h"
 #include "filewriter.h"
-
+#include "testprinter.h"
 using namespace std;
 
+// 2 3 3 2 1 1 1 2
 
 int main()
 {
+    TestPrinter test;
+    QTest::qExec(&test);
     int n;
     cout << "Input n(odd):";
     cin >> n;

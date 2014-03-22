@@ -1,7 +1,7 @@
 #include <iostream>
 #include "bubblesorter.h"
 #include "mergesorter.h"
-
+#include "testsorter.h"
 
 using namespace std;
 
@@ -11,6 +11,8 @@ bool f(int a,int b) {
 
 int main()
 {
+    TestSorter test;
+    QTest::qExec(&test);
     int n = 0;
 
     cout << "input n:\n";

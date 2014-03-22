@@ -23,7 +23,7 @@ void BubbleSorter::sort(int **array, int l, int r)
         swapped = false;
         i++;
         for(int j = 0; j < n - i; j++)
-            if( array[j] > array[j+1])
+            if( array[j][0] > array[j+1][0])
             {
                 swap(array[j], array[j+1]);
                 swapped = true;
