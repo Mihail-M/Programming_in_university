@@ -1,5 +1,6 @@
 #pragma once
-
+template <class T>
+class MySet;
 template <class T>
 class Tree {
 public:
@@ -18,7 +19,6 @@ public:
     ///return size
     int size();
 
-protected:
     struct TreeNode{
         TreeNode *left;
         TreeNode *right;
@@ -31,6 +31,8 @@ protected:
         }
     };
     TreeNode* root;
+
+protected:
     int countOfElements;
 
     void add(T value, TreeNode *&node);

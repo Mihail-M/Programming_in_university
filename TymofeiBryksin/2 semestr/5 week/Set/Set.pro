@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core
-
+QT += testlib
 QT       -= gui
 QMAKE_CXXFLAGS += -std=c++0x
 TARGET = Set
@@ -19,4 +19,5 @@ SOURCES += main.cpp
 
 HEADERS += \
     tree.h \
-    myset.h
+    myset.h \
+    test.h
