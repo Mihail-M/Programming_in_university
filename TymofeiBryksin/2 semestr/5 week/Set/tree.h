@@ -1,6 +1,5 @@
 #pragma once
-template <class T>
-class MySet;
+
 template <class T>
 class Tree {
 public:
