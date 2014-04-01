@@ -9,46 +9,39 @@ class Test : public QObject
 {
     Q_OBJECT
 public:
-    explicit Test(QObject *parent = 0){};
+    explicit Test(QObject *parent = 0){}
 
 private slots:
-    void initTestCase()
+    void init()
     {
         test = new MySet<int>();
+    }
+    void cleanup()
+    {
         delete test;
     }
-
     void testAdd()
     {
-        test = new MySet<int>();
         test->add(1);
         QVERIFY(test->exist(1));
-        delete test;
     }
     void testAddSame()
     {
-        test = new MySet<int>();
         test->add(1);
         test->add(1);
         QVERIFY(test->size() == 1);
-        delete test;
     }
 
 
     void testDelete()
     {
-        MySet<int> *test = new MySet <int>;
-        test = new MySet<int>();
         test->add(1);
         test->remove(1);
         QVERIFY(!test->exist(1));
-        delete test;
-
     }
 
     void testUnion()
     {
-        MySet<int> *test = new MySet <int>;
         MySet<int> *temp = new MySet <int>;
         temp->add(3);
         temp->add(4);
@@ -57,13 +50,11 @@ private slots:
         temp = test->merge(temp);
         QVERIFY(temp->exist(2) && temp->exist(3) && temp->exist(4));
         delete temp;
-        delete test;
 
     }
 
     void testIntersect()
     {
-        MySet<int> *test = new MySet <int>;
         MySet<int> *temp = new MySet <int>;
         temp->add(3);
         temp->add(4);
@@ -71,7 +62,6 @@ private slots:
         temp = test->intersection(temp);
         QVERIFY(!temp->exist(2) && temp->exist(3) && !temp->exist(4));
         delete temp;
-        delete test;
     }
 
 private:
