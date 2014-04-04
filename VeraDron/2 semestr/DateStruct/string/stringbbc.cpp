@@ -56,8 +56,6 @@ void StringBBC::push_back(char c)
 }
 void StringBBC::insert(int pos, char* str1) {
 
-    int n = strlen(str1);
-
     int len1 = mySize, len2 = strlen(str1);
     myCapacity = getNewCapacity(n);
 
