@@ -20,8 +20,9 @@ public:
     void erase(int pos, int count);
     friend ostream &operator<<(ostream &stream, const StringBBC &s);
     friend istream &operator>>(istream &stream, StringBBC &s);
-    friend StringBBC operator +(StringBBC &a, StringBBC &b);
+    friend StringBBC operator +(StringBBC a, StringBBC b);
     StringBBC operator  += (StringBBC b);
+    StringBBC operator =(StringBBC);
     char &operator [](int i);
 private:
     char *str;

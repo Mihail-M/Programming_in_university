@@ -24,6 +24,7 @@ StringBBC::StringBBC(char *str1): mySize(0), myCapacity(MinCapacity)
 
 StringBBC::StringBBC(int size, int capacity): mySize(size), myCapacity(capacity)
 {
+    str = new char[myCapacity];
     for (int i = 0; i < mySize; i++)
         str[i] = '1';
     str[mySize] = '\0';
@@ -36,10 +37,14 @@ bool StringBBC::empty()
 
 void StringBBC::push_back(char c)
 {
-    if (myCapacity <= mySize + 2) {
+    if (myCapacity < mySize + 1) {
         myCapacity = getNewCapacity(1);
         char *newStr = new char[myCapacity];
-        rewrite(newStr, str, mySize);
+
+        for (int i = 0; i < mySize; i++)
+            newStr[i] = str[i];
+
+        newStr[mySize] = '\0';
 
         delete[] str;
         str = newStr;
@@ -50,11 +55,14 @@ void StringBBC::push_back(char c)
 
 }
 void StringBBC::insert(int pos, char* str1) {
+
     int n = strlen(str1);
-    myCapacity = getNewCapacity(n);
 
     int len1 = mySize, len2 = strlen(str1);
-    char *res = new char[len1 + len2 + 1];
+    myCapacity = getNewCapacity(n);
+
+    char *res = new char[myCapacity];
+
     for (int i = 0; i < pos; ++i)
     {
         res[i] = str[i];
@@ -96,15 +104,22 @@ void StringBBC::erase(int pos, int count)
 
 StringBBC StringBBC::operator +=(StringBBC b)
 {
-    char* str = new char[b.mySize + 1];
-    for (int i = 0; i < b.mySize; i++)
-    {
-        str[i] = b.str[i];
-    }
-    str[b.mySize] = '\0';
-    this->insert(mySize, str);
-    delete[] str;
+    insert(mySize, b.str);
     return *this;
+
+}
+
+StringBBC StringBBC::operator =(StringBBC str2)
+{
+    int n = str2.size();
+    myCapacity = str2.capacity();
+    mySize = str2.size();
+    char *newStr = new char[myCapacity];
+    for (int i = 0; i < n; i++) {
+        newStr[i] = str2[i];
+    }
+    delete[] str;
+    str = newStr;
 
 }
 
@@ -121,8 +136,12 @@ void StringBBC::pop_back()
     if (myCapacity >= 2*mySize) {
 
         myCapacity = getNewCapacity(-1);
-        char *newStr = new char[myCapacity / 2];
-        rewrite(newStr, str, mySize);
+        char *newStr = new char[myCapacity];
+
+        for (int i = 0; i < mySize; i++)
+            newStr[i] = str[i];
+        newStr[mySize] = '\0';
+
         delete[] str;
         str = newStr;
     }
@@ -146,25 +165,15 @@ void StringBBC::clear()
     mySize = 0;
     str = new char[1];
     str[0] = '\0';
-}
-
-void StringBBC::rewrite(char *&newStr, char *str, int n)
-{
-    for (int i = 0; i < n; i++)
-        newStr[i] = str[i];
-    newStr[n] = '\0';
+    myCapacity = MinCapacity;
 }
 
 
-StringBBC operator +(StringBBC &a, StringBBC &b)
+StringBBC operator +(StringBBC a, StringBBC b)
 {
-    StringBBC c(a);
-    int n = b.size();
-    char s[n + 1];
-    for(int i = 0; i < n; i++)
-        s[i] = b.str[i];
-    s[n] = '\0';
-    c.insert(c.size(), s);
+    StringBBC c("");
+    c.insert(0, a.str);
+    c.insert(a.size(), b.str);
     return c;
 }
 
@@ -178,16 +187,9 @@ ostream &operator<<(ostream &stream, const StringBBC &s) {
 }
 
 istream &operator>>(istream &stream, StringBBC &s) {
-    char c;
-    char str[100];
-    int i = 0;
-    while (c != '\n')
-    {
-        c = getchar();
-        str[i++] = c;
-    }
-    str[--i] = '\0';
-    s = str;
+    char str[101];
+    stream >> str;
+    s.insert(0, str);
     return stream;
 }
 int StringBBC::getNewCapacity(int n)
