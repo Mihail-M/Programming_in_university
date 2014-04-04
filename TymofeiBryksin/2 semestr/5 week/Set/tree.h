@@ -4,14 +4,20 @@ template <class T>
 class Tree {
 public:
     Tree():root(nullptr), countOfElements(0)
-    {};
+    {
+
+    };
+    ~Tree() {
+        clear();
+    }
+
     /// add node with key value
     void add(T value);
 
     /// \brief exist
     /// \param value
-    /// \return 0 if value exist
-    /// \return 1 if value not exist
+    /// \return false if value exist
+    /// \return true if value not exist
     bool exist(T value);
     /// delete node with key value
     void remove(T value);
@@ -30,6 +36,7 @@ public:
         }
     };
     TreeNode* root;
+    void clear();
 
 protected:
     int countOfElements;
@@ -42,11 +49,19 @@ protected:
             node = node->left;
         return node;
     }
+    void deleteTree(TreeNode *temp);
 
 };
 template <class T>
 int Tree<T>::size() {
     return countOfElements;
+}
+
+
+template <class T>
+void Tree<T>::clear()
+{
+    deleteTree(root);
 }
 
 template <class T>
@@ -141,4 +156,17 @@ bool Tree<T>::exist(T value, TreeNode *&node) {
         return exist(value, node->right);
 
 }
+
+template <class T>
+void Tree<T>::deleteTree(Tree<T>::TreeNode* temp)
+{
+    TreeNode *node = temp;
+    if (node != nullptr)
+    {
+        deleteTree(node->left);
+        deleteTree(node->right);
+        delete node;
+    }
+}
+
 

@@ -43,11 +43,13 @@ private slots:
     void testUnion()
     {
         MySet<int> *temp = new MySet <int>;
+
         temp->add(3);
         temp->add(4);
         test->add(2);
         test->add(3);
         temp = test->merge(temp);
+
         QVERIFY(temp->exist(2) && temp->exist(3) && temp->exist(4));
         delete temp;
 
@@ -56,10 +58,12 @@ private slots:
     void testIntersect()
     {
         MySet<int> *temp = new MySet <int>;
+
         temp->add(3);
         temp->add(4);
         test->add(3);
         temp = test->intersection(temp);
+
         QVERIFY(!temp->exist(2) && temp->exist(3) && !temp->exist(4));
         delete temp;
     }

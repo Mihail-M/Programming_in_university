@@ -4,6 +4,7 @@
 #include <iostream>
 
 using namespace std;
+
 int main()
 {
     Test test;
@@ -16,13 +17,6 @@ int main()
     set2.add(3);
     set = set2.merge(set);
     cout << set->exist(1);
-/*
-   // H.add(2);
-    H.add(3);
-    H.remove(3);
-    H.remove(3);
-    H.remove(2);
-    cout << H.size();
-    H.add(2);
-  */  //cout << H.size();
+
+    delete set;
 }
