@@ -20,14 +20,12 @@ private slots:
     }
 
     void testPush() {
-        test = new StackPointer;
         double testNum = 1;
         test->push(testNum);
         QVERIFY(test->size() == 1);
         QVERIFY(test->top() == 1);
     }
     void testPop() {
-        test = new StackPointer;
         double testNum = 1;
         test->push(testNum);
         test->pop();
@@ -35,7 +33,6 @@ private slots:
     }
 
     void testClear() {
-        test = new StackPointer;
         double testNum = 1;
         test->push(testNum);
         test->push(testNum);
