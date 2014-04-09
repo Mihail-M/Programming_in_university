@@ -6,14 +6,11 @@
 using namespace std;
 
 /// вспомогательная функция для инициализации матриц
-double **init(double **a, int n, int m)
-{
+double **init(double **a, int n, int m) {
 	double **b = new double*[n];
-	for (int i = 0; i < n; ++i)
-	{
+	for (int i = 0; i < n; ++i) {
 		b[i] = new double[m];
-		for (int j = 0; j < m; ++j)
-		{
+		for (int j = 0; j < m; ++j) {
 			b[i][j] = a[i][j];
 		}
 
@@ -22,8 +19,10 @@ double **init(double **a, int n, int m)
 }
 
 
-Gauss::Gauss(double **A, int n, int m): triangled(false), countOfRows(n), countOfColumns(m)
-{
+Gauss::Gauss(double **A, int n, int m):
+	triangled(false)
+  , countOfRows(n)
+  , countOfColumns(m) {
 	matrix = new double*[n];
 	for (int i = 0 ; i < n; i++)
 		matrix[i] = new double[m];
@@ -35,8 +34,7 @@ Gauss::Gauss(double **A, int n, int m): triangled(false), countOfRows(n), countO
 
 }
 
-Gauss::~Gauss()
-{
+Gauss::~Gauss() {
 	for (int i = 0; i < countOfRows; i++)
 		delete[] matrix[i];
 	delete[] matrix;
@@ -44,8 +42,7 @@ Gauss::~Gauss()
 	delete[] where;
 }
 
-void Gauss::show()
-{
+void Gauss::show() {
 	for (int i = 0; i < countOfRows; i++, std::cout << std::endl)
 		for (int j = 0; j < countOfColumns; j++)
 			cout << (abs(matrix[i][j]) < EPS ? 0: matrix[i][j]) << " ";
@@ -55,18 +52,23 @@ void Gauss::toTriangle()
 {
 
 	if(triangled) return;
+
 	triangled = true;
 	int m = countOfColumns - 1;
 	int n = countOfRows;
+
 	for(int i = 0; i < m; i++)
 		where[i] = -1;
+
 	for (int col = 0, row = 0; col < m && row < n; ++col) {
 		int sel = row;
 		for (int i = row; i < n; ++i)
 			if (abs(matrix[i][col]) > abs(matrix[sel][col]))
 				sel = i;
+
 		if (abs(matrix[sel][col]) < EPS)
 			continue;
+
 		for (int i = col; i <= m; ++i)
 			swap (matrix[sel][i], matrix[row][i]);
 		where[col] = row;
@@ -77,6 +79,7 @@ void Gauss::toTriangle()
 				for (int j = col; j <= m; ++j)
 					matrix[i][j] -= matrix[row][j] * c;
 			}
+
 		++row;
 	}
 }
@@ -96,17 +99,14 @@ bool Gauss::showParticularSolution()
 	}
 }
 
-void Gauss::getParticularSolution(int n)
-{
+void Gauss::getParticularSolution(int n) {
 	double **b = init(matrix, countOfRows, countOfColumns);
 
-	for (int i = 0; i < countOfRows; i++ )
-	{
-		if (abs(matrix[i][n]) < EPS ){
+	for (int i = 0; i < countOfRows; i++ ) {
+		if (abs(matrix[i][n]) < EPS ) {
 			matrix[i][countOfColumns - 1] = 0;
 		}
-		else
-		{
+		else {
 			matrix[i][countOfColumns - 1] = -matrix[i][n];
 			matrix[i][n] = 0;
 		}
@@ -124,32 +124,33 @@ void Gauss::getParticularSolution(int n)
 	delete[] b;
 }
 
-void Gauss::showBasis()
-{
+void Gauss::showBasis() {
+
 	int rank = getRank();
 	double **answer = basis();
 	for (int i = 0; i <= rank; i++, cout << endl)
 		for (int j = 0; j < countOfColumns - 1; j++)
 			cout << answer[i][j] << " ";
+
+	for (int i = 0; i <= rank; i++)
+		delete[] answer[i];
+	delete answer;
+
 }
 
-int Gauss::getRank()
-{
-	if (rank == -1){}
-	else
-	{
+int Gauss::getRank() {
+	if (rank != -1)
 		toTriangle();
 
-		int c = 0;
-		for(int i = 0 ;i < countOfColumns; i++)
-			if(where[i] == -1) c++;
-		rank = c;
-	}
+	int c = 0;
+	for(int i = 0 ;i < countOfColumns; i++)
+		if(where[i] == -1) c++;
+	rank = c;
+
 	return rank;
 }
 
-double **Gauss::basis()
-{
+double **Gauss::basis() {
 
 	if (getParticularSolution()) {
 
@@ -161,11 +162,10 @@ double **Gauss::basis()
 		for(int i = 0; i < countOfColumns - 1; i++)
 			answer[0][i] = particularSolution[i];
 
-
 		int *free = new int[rank];
 
 		for(int i = 0, j = 0; i < countOfColumns; i++)
-			if (where[i] == -1){
+			if (where[i] == -1) {
 				free[j++] = i;
 			}
 
@@ -181,8 +181,7 @@ double **Gauss::basis()
 
 }
 
-int Gauss::getParticularSolution()
-{
+int Gauss::getParticularSolution() {
 	toTriangle();
 
 	particularSolution = new double[countOfColumns - 1];

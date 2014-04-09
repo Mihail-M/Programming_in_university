@@ -7,8 +7,7 @@ using namespace std;
 
 
 
-int main()
-{
+int main() {
 	test();
 	return 0;
 }

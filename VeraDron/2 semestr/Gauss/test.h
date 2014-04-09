@@ -22,6 +22,7 @@ void test() {
 		pathToTest += i +'0';
 		pathToTest += ".txt";
 		ifstream in(pathToTest.c_str());
+
 		int n = 0, m = 0;
 		in >> n >> m;
 		double **mas = new double*[n];
@@ -35,7 +36,9 @@ void test() {
 		Gauss b(mas, n, m);
 
 		for(int q = 0; q < n; q++)
-			delete[] mas[i];
+			delete[] mas[q];
+
+		n = b.getRank() + 1;
 
 		mas = b.basis();
 
@@ -65,12 +68,14 @@ void test() {
 		if (is_ok (mas, ans, n1, m1))
 			cout << pathToTest << " Ok!" << endl;
 		else cout << pathToTest << "Failed(" << endl;
+
 		for(int q = 0; q < n; q++)
-			delete[] mas[i], delete[] ans[i];
+			delete[] mas[q];
+
+		for (int q = 0; q < n1; q++)
+			delete[] ans[q];
+
 		delete mas;
 		delete ans;
-
 	}
-
-
 }
