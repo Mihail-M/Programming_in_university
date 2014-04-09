@@ -117,7 +117,7 @@ StringBBC StringBBC::operator +=(StringBBC& b)
 
 }
 
-StringBBC &StringBBC::operator =(StringBBC &str2)
+StringBBC StringBBC::operator =(StringBBC &str2)
 {
 	if (this == &str2) return *this;
 	StringBBC c(*this);

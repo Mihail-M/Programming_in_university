@@ -23,7 +23,7 @@ public:
 	friend istream &operator>>(istream &stream, StringBBC &s);
 	friend StringBBC &operator +(StringBBC &a, StringBBC &b);
 	StringBBC operator += (StringBBC &b);
-	StringBBC &operator =(StringBBC &b);
+	StringBBC operator =(StringBBC &b);
 	char &operator [](int i);
 private:
 	char *str;
