@@ -110,21 +110,20 @@ void StringBBC::erase(int pos, int count)
 	}
 }
 
-StringBBC StringBBC::operator +=(StringBBC& b)
+StringBBC &StringBBC::operator +=(StringBBC& b)
 {
 	insert(mySize, b.str);
 	return *this;
 
 }
 
-StringBBC StringBBC::operator =(StringBBC &str2)
+StringBBC &StringBBC::operator =(StringBBC &str2)
 {
 	if (this == &str2) return *this;
-	StringBBC c(*this);
-	c.clear();
-	c.insert(0, str2.str);
+	clear();
+	insert(0, str2.str);
 
-	return c;
+	return *this;
 }
 
 char &StringBBC::operator [](int i)
