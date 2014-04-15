@@ -3,170 +3,170 @@
 template <class T>
 class Tree {
 public:
-    Tree():root(nullptr), countOfElements(0)
-    {
+	Tree():root(nullptr), countOfElements(0)
+	{
 
-    };
-    ~Tree() {
-        clear();
-    }
+	};
+	~Tree() {
+		clear();
+	}
 
-    /// add node with key value
-    void add(T value);
+	/// add node with key value
+	void add(T value);
 
-    /// \brief exist
-    /// \param value
-    /// \return false if value exist
-    /// \return true if value not exist
-    bool exist(T value);
-    /// delete node with key value
-    void remove(T value);
-    ///return size
-    int size();
+	/// \brief exist
+	/// \param value
+	/// \return false if value exist
+	/// \return true if value not exist
+	bool exist(T value);
+	/// delete node with key value
+	void remove(T value);
+	///return size
+	int size();
 
-    struct TreeNode{
-        TreeNode *left;
-        TreeNode *right;
-        T value;
+	struct TreeNode{
+		TreeNode *left;
+		TreeNode *right;
+		T value;
 
-        TreeNode (T val) {
-            left = nullptr;
-            right = nullptr;
-            value = val;
-        }
-    };
-    TreeNode* root;
-    void clear();
+		TreeNode (T val) {
+			left = nullptr;
+			right = nullptr;
+			value = val;
+		}
+	};
+	TreeNode* root;
+	void clear();
 
 protected:
-    int countOfElements;
+	int countOfElements;
 
-    void add(T value, TreeNode *&node);
-    bool exist(T value, TreeNode *&node);
-    void remove(T value, TreeNode *&node);
-    TreeNode *getLeftMostNode(TreeNode *&node) {
-        while (node->left != nullptr)
-            node = node->left;
-        return node;
-    }
-    void deleteTree(TreeNode *temp);
+	void add(T value, TreeNode *&node);
+	bool exist(T value, TreeNode *&node);
+	void remove(T value, TreeNode *&node);
+	TreeNode *getLeftMostNode(TreeNode *&node) {
+		while (node->left != nullptr)
+			node = node->left;
+		return node;
+	}
+	void deleteTree(TreeNode *temp);
 
 };
 template <class T>
 int Tree<T>::size() {
-    return countOfElements;
+	return countOfElements;
 }
 
 
 template <class T>
 void Tree<T>::clear()
 {
-    deleteTree(root);
+	deleteTree(root);
 }
 
 template <class T>
 void Tree<T>::add(T value) {
-    add(value, root);
-    countOfElements++;
+	add(value, root);
+	countOfElements++;
 }
 
 template <class T>
 bool Tree<T>::exist(T value) {
-    return exist(value, root);
+	return exist(value, root);
 }
 
 template <class T>
 void Tree<T>::remove(T value) {
-    if(exist(value)) {
-        remove(value, root);
-        countOfElements--;
-    }
+	if(exist(value)) {
+		remove(value, root);
+		countOfElements--;
+	}
 }
 
 template <class T>
 void Tree<T>::add(T value, TreeNode *&node) {
-    if (node == nullptr) {
-        node = new TreeNode(value);
-        return;
-    }
-    if (value < node->value) {
-        add(value, node->left);
-    }
-    else if (value > node->value)
-        add(value, node->right);
-    else
-        countOfElements--;
+	if (node == nullptr) {
+		node = new TreeNode(value);
+		return;
+	}
+	if (value < node->value) {
+		add(value, node->left);
+	}
+	else if (value > node->value)
+		add(value, node->right);
+	else
+		countOfElements--;
 }
 
 template <class T>
 void Tree<T>::remove(T value, TreeNode *&node){
 
-    if (value < node->value)
-    {
-        remove(value, node->left);
-    }
-    else if (value > node->value)
-    {
-        remove(value, node->right);
-    }
-    else if (node->left == nullptr && node->right == nullptr){
-        delete node;
-        node = nullptr;
-        return;
-    }
-    else if (node->left != nullptr) {
-        TreeNode *temp = node->left;
-        delete node;
-        node = temp;
-    }
-    else if (node->right != nullptr) {
-        TreeNode *temp = node->right;
-        delete node;
-        node = temp;
-    }
-    else {
-        TreeNode *temp = getLeftMostNode(node->right);
-        node->value = temp->value;
-        node->right = temp->right;
+	if (value < node->value)
+	{
+		remove(value, node->left);
+	}
+	else if (value > node->value)
+	{
+		remove(value, node->right);
+	}
+	else if (node->left == nullptr && node->right == nullptr){
+		delete node;
+		node = nullptr;
+		return;
+	}
+	else if (node->left != nullptr) {
+		TreeNode *temp = node->left;
+		delete node;
+		node = temp;
+	}
+	else if (node->right != nullptr) {
+		TreeNode *temp = node->right;
+		delete node;
+		node = temp;
+	}
+	else {
+		TreeNode *temp = getLeftMostNode(node->right);
+		node->value = temp->value;
+		node->right = temp->right;
 
-        if (temp->left == nullptr && temp->right == nullptr)
-        {
-            delete temp;
-            temp = nullptr;
-            return;
-        }
-        else
-        {
-            TreeNode *temp2 = temp->right;
-            delete temp;
-            temp = temp2;
-        }
-    }
+		if (temp->left == nullptr && temp->right == nullptr)
+		{
+			delete temp;
+			temp = nullptr;
+			return;
+		}
+		else
+		{
+			TreeNode *temp2 = temp->right;
+			delete temp;
+			temp = temp2;
+		}
+	}
 }
 
 template <class T>
 bool Tree<T>::exist(T value, TreeNode *&node) {
-    if (node == nullptr)
-        return false;
-    if (node->value == value)
-        return true;
-    if (value < node->value)
-        return exist(value, node->left);
-    else
-        return exist(value, node->right);
+	if (node == nullptr)
+		return false;
+	if (node->value == value)
+		return true;
+	if (value < node->value)
+		return exist(value, node->left);
+	else
+		return exist(value, node->right);
 
 }
 
 template <class T>
 void Tree<T>::deleteTree(Tree<T>::TreeNode* temp)
 {
-    TreeNode *node = temp;
-    if (node != nullptr)
-    {
-        deleteTree(node->left);
-        deleteTree(node->right);
-        delete node;
-    }
+	TreeNode *node = temp;
+	if (node != nullptr)
+	{
+		deleteTree(node->left);
+		deleteTree(node->right);
+		delete node;
+	}
 }
 
 

@@ -48,10 +48,13 @@ private slots:
 		temp->add(4);
 		test->add(2);
 		test->add(3);
-		delete temp;
-		temp = test->merge(temp);
 
-		QVERIFY(temp->exist(2) && temp->exist(3) && temp->exist(4));
+		MySet<int> *result = new MySet<int>;
+
+		result = test->merge(temp);
+
+		QVERIFY(result->exist(2) && result->exist(3) && result->exist(4));
+		delete result;
 		delete temp;
 
 	}
@@ -63,10 +66,13 @@ private slots:
 		temp->add(3);
 		temp->add(4);
 		test->add(3);
-		delete temp;
-		temp = test->intersection(temp);
 
-		QVERIFY(!temp->exist(2) && temp->exist(3) && !temp->exist(4));
+		MySet<int> *result = new MySet<int>;
+
+		result = test->intersection(temp);
+
+		QVERIFY(!result->exist(2) && result->exist(3) && !result->exist(4));
+		delete result;
 		delete temp;
 	}
 
