@@ -12,7 +12,6 @@ void UniqueList::pushBack(valueType x)
 {
 	if (find(x)) {
 		throw DuplicateValueException("Prost");
-		return;
 	}
 	AciclicList::pushBack(x);
 
@@ -21,8 +20,7 @@ void UniqueList::pushBack(valueType x)
 void UniqueList::pushFront(valueType x)
 {
 	if (find(x)) {
-//		throw DuplicateValueException("Prost");
-		return;
+		throw DuplicateValueException("Prost");
 	}
 	AciclicList::pushFront(x);
 }
@@ -40,7 +38,6 @@ void UniqueList::erase(valueType x)
 {
 	if (countOfElements == 0){
 		throw EmptyListException("Sorry");
-		return;
 	}
 	AciclicList::erase(x);
 }
@@ -50,9 +47,26 @@ void UniqueList::erase(int pos)
 {
 	if (countOfElements == 0){
 		throw EmptyListException("Sorry");
-		return;
 	}
 	AciclicList::erase(pos);
+}
+
+void UniqueList::popBack()
+{
+	if (countOfElements == 0){
+		throw EmptyListException("Sorry");
+	}
+	AciclicList::popBack();
+
+}
+
+void UniqueList::popFront()
+{
+	if (countOfElements == 0){
+		throw EmptyListException("Sorry");
+	}
+	AciclicList::popFront();
+
 }
 
 

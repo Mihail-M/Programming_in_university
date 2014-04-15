@@ -36,6 +36,19 @@ private slots:
 		QVERIFY(test->size() == 1.0);
 	}
 
+void testEmptyDelete() {
+		try
+		{
+			test->popBack();
+		}
+		catch (const Exception &exec)
+		{
+			std::cout << exec.get() << std::endl;
+		}
+
+		QVERIFY(test->size() == 0.0);
+
+	}
 
 	void testAddDuplicate() {
 		try

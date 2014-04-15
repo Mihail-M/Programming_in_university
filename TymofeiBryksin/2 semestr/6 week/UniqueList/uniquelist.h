@@ -25,6 +25,8 @@ public:
 	void add(int pos, valueType x);
 	void erase(valueType x);
 	void erase(int pos);
+	void popBack();
+	void popFront();
 
 };
 
