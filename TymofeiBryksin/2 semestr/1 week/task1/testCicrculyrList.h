@@ -14,12 +14,10 @@ private:
     CirculyrList *test;
 private slots:
 
-    void initTestCase() {
+	void init() {
         test = new CirculyrList;
-        QVERIFY(test->size() == 0);
     }
     void testPushBack() {
-        test = new CirculyrList;
         double testNum = 123;
         test->pushBack(testNum + 1);
         test->pushBack(testNum);
@@ -28,7 +26,6 @@ private slots:
     }
 
     void testPushFront() {
-        test = new CirculyrList;
         double testNum = 123;
         test->pushBack(testNum + 1);
         test->pushBack(testNum);
@@ -37,7 +34,6 @@ private slots:
     }
 
     void testPopFront() {
-        test = new CirculyrList;
         double testNum = 123;
         test->pushBack(testNum + 1);
         test->pushBack(testNum);
@@ -47,7 +43,6 @@ private slots:
 
 
     void testPopBack() {
-        test = new CirculyrList;
         double testNum = 123;
         test->pushBack(testNum + 1);
         test->pushBack(testNum);
@@ -58,7 +53,6 @@ private slots:
     }
 
     void testFind() {
-        test = new CirculyrList;
         double testNum = 123;
         test->pushBack(testNum);
         test->pushBack(testNum);
@@ -68,7 +62,6 @@ private slots:
     }
 
     void testErase() {
-        test = new CirculyrList;
         double testNum = 123;
         test->pushBack(testNum);
         test->pushBack(testNum + 1);
@@ -79,7 +72,6 @@ private slots:
     }
 
     void testEraseByValue() {
-        test = new CirculyrList;
         double testNum = 123;
         test->pushBack(testNum);
         test->pushBack(testNum + 1);
@@ -91,7 +83,6 @@ private slots:
 
     void testAdd() {
 
-        test = new CirculyrList;
         double testNum = 123;
         test->pushBack(testNum);
         test->pushBack(testNum + 1);
@@ -119,6 +110,7 @@ private slots:
             test->popFront();
             tempTest->popFront();
         }
+		delete tempTest;
 
     }
 

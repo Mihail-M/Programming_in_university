@@ -67,8 +67,14 @@ void CirculyrList::popBack()
 {
     if(!isEmpty()) {
         ListElement *temp = last;
+		if(countOfElements == 1) {
+			delete temp;
+			last = nullptr;
+			head = last;
+			return;
+		}
         last = last->prev;
-        last->next = head;
+		last->next = head;
         head->prev = last;
         delete temp;
         countOfElements--;

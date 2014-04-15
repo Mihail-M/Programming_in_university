@@ -13,12 +13,12 @@ public:
 private:
     AciclicList *test;
 private slots:
-    void initTestCase() {
+
+	void init() {
         test = new AciclicList;
-        QVERIFY(test->size() == 0);
     }
+
     void testPushBack() {
-        test = new AciclicList;
         double testNum = 123;
         test->pushBack(testNum + 1);
         test->pushBack(testNum);
@@ -27,7 +27,6 @@ private slots:
     }
 
     void testPushFront() {
-        test = new AciclicList;
         double testNum = 123;
         test->pushBack(testNum + 1);
         test->pushBack(testNum);
@@ -36,7 +35,6 @@ private slots:
     }
 
     void testPopFront() {
-        test = new AciclicList;
         double testNum = 123;
         test->pushBack(testNum + 1);
         test->pushBack(testNum);
@@ -46,7 +44,6 @@ private slots:
 
 
     void testPopBack() {
-        test = new AciclicList;
         double testNum = 123;
         test->pushBack(testNum + 1);
         test->pushBack(testNum);
@@ -56,7 +53,6 @@ private slots:
         QVERIFY(test->back() == testNum);
     }
     void testFind() {
-        test = new AciclicList;
         double testNum = 123;
         test->pushBack(testNum);
         test->pushBack(testNum);
@@ -66,7 +62,6 @@ private slots:
     }
 
     void testErase() {
-        test = new AciclicList;
         double testNum = 123;
         test->pushBack(testNum);
         test->pushBack(testNum + 1);
@@ -77,7 +72,6 @@ private slots:
     }
 
     void testEraseByValue() {
-        test = new AciclicList;
         double testNum = 123;
         test->pushBack(testNum);
         test->pushBack(testNum + 1);
@@ -88,7 +82,6 @@ private slots:
     }
 
     void testAdd() {
-        test = new AciclicList;
         double testNum = 123;
         test->pushBack(testNum);
         test->pushBack(testNum + 1);
@@ -99,8 +92,8 @@ private slots:
     }
 
     void testReverse() {
-        test = new AciclicList;
-        AciclicList *tempTest = new AciclicList;
+
+		AciclicList *tempTest = new AciclicList;
         double testNum = 1;
         test->pushBack(testNum);
         test->pushBack(testNum + 1);
@@ -115,10 +108,11 @@ private slots:
             test->popFront();
             tempTest->popFront();
         }
+		delete tempTest;
 
     }
 
-    void cleanupTestCase()
+	void cleanup()
     {
         delete test;
     }
