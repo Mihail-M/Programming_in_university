@@ -8,91 +8,88 @@ using namespace std;
 
 class TestHashTable : public QObject
 {
-    Q_OBJECT
+	Q_OBJECT
 public:
-    explicit TestHashTable(QObject *parent = 0) : QObject(parent) {}
+	explicit TestHashTable(QObject *parent = 0) : QObject(parent) {}
 private:
-    HashTable* table;
-    HashFunction* simple;
-    HashFunction* power;
+	HashTable* table;
+	HashFunction* hashFunction;
 
 private slots:
-    void initTestCase()
-    {
-        table = new HashTable();
-        simple = getHashFunction(1);
-        power = getHashFunction(2);
-    }
+	void init()
+	{
+		table = new HashTable();
+	}
 
-    void testFindSimple()
-    {
-        string str;
-        simple = getHashFunction(1);
-        table->setHashFunction(simple);
-        table->add(str);
-        QCOMPARE(table->find(str), true);
-        table->erase(str);
-        QCOMPARE(table->find(str), false);
-    }
+	void testFindSimple()
+	{
+		string str;
+		hashFunction = getHashFunction(1);
+		table->setHashFunction(hashFunction);
+		table->add(str);
+		QCOMPARE(table->find(str), true);
+		table->erase(str);
+		QCOMPARE(table->find(str), false);
+	}
 
-    void testCheckDeg()
-    {
-        string str;
-        power = getHashFunction(2);
-        table->setHashFunction(power);
-        table->add(str);
-        QCOMPARE(table->find(str), true);
-        table->erase(str);
-        QCOMPARE(table->find(str), false);
-    }
+	void testCheckDeg()
+	{
+		string str;
+		hashFunction = getHashFunction(2);
+		table->setHashFunction(hashFunction);
+		table->add(str);
+		QCOMPARE(table->find(str), true);
+		table->erase(str);
+		QCOMPARE(table->find(str), false);
+	}
 
-    void testAddSimple()
-    {
-        string str = "test1";
-        simple = getHashFunction(1);
-        table->setHashFunction(simple);
-        table->add(str);
-        QCOMPARE(table->find(str), true);
-        str = "test4";
-        table->add(str);
-        QCOMPARE(table->find(str), true);
-    }
+	void testAddSimple()
+	{
+		string str = "test1";
+		hashFunction = getHashFunction(1);
+		table->setHashFunction(hashFunction);
+		table->add(str);
+		QCOMPARE(table->find(str), true);
+		str = "test4";
+		table->add(str);
+		QCOMPARE(table->find(str), true);
+	}
 
-    void testAddPower()
-    {
-        string str = "test2";
-        power = getHashFunction(2);
-        table->setHashFunction(power);
-        table->add(str);
-        QCOMPARE(table->find(str), true);
-        str = "test3";
-        table->add(str);
-        QCOMPARE(table->find(str), true);
-    }
+	void testAddPower()
+	{
+		string str = "test2";
+		hashFunction = getHashFunction(2);
+		table->setHashFunction(hashFunction);
+		table->add(str);
+		QCOMPARE(table->find(str), true);
+		str = "test3";
+		table->add(str);
+		QCOMPARE(table->find(str), true);
+	}
 
-    void testEraseSimple()
-    {
-        string str = "wow";
-        simple = getHashFunction(1);
-        table->setHashFunction(simple);
-        table->add(str);
-        table->erase(str);
-        QCOMPARE(!table->find(str), true);
-    }
+	void testEraseSimple()
+	{
+		string str = "wow";
+		hashFunction = getHashFunction(1);
+		table->setHashFunction(hashFunction);
+		table->add(str);
+		table->erase(str);
+		QCOMPARE(!table->find(str), true);
+	}
 
-    void testErasePower()
-    {
-        string str = "wow";
-        power = getHashFunction(2);
-        table->setHashFunction(power);
-        table->add(str);
-        table->erase(str);
-        QCOMPARE(table->find(str), false);
-    }
+	void testErasePower()
+	{
+		string str = "wow";
+		hashFunction = getHashFunction(2);
+		table->setHashFunction(hashFunction);
+		table->add(str);
+		table->erase(str);
+		QCOMPARE(table->find(str), false);
+	}
 
-    void cleanupTestCase()
-    {
-        delete table;
-    }
+	void cleanup()
+	{
+		delete table;
+	}
 };
 //QTEST_MAIN(TestHashTable)

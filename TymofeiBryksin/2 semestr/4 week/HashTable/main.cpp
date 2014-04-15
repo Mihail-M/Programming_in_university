@@ -7,11 +7,11 @@ using namespace std;
 
 int main()
 {
-    HashTable b;
-    TestHashTable a;
-    QTest::qExec(&a);
-    UserChoice c;
-    c.choice(&b);
-    return 0;
+	HashTable b;
+	TestHashTable a;
+	QTest::qExec(&a);
+	UserChoice c;
+	c.choice(&b);
+	return 0;
 }
 

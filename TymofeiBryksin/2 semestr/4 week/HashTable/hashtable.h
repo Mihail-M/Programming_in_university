@@ -8,44 +8,44 @@
 class HashTable
 {
 public:
-    HashTable();
-    HashTable(int size);
+	HashTable();
+	HashTable(int size);
 
-    ~HashTable();
+	~HashTable();
 
-    /// \brief add
-    /// add element value in hash table
-    void add(valueType value);
+	/// \brief add
+	/// add element value in hash table
+	void add(valueType value);
 
-    /// \brief erase
-    /// delete element value in hash table(if this element exist)
+	/// \brief erase
+	/// delete element value in hash table(if this element exist)
 
-    void erase(valueType value);
-    ///
-    /// \brief find
-    /// find
-    /// \return false - element exist, true - element - not exist
+	void erase(valueType value);
+	///
+	/// \brief find
+	/// find
+	/// \return false - element exist, true - element - not exist
 
-    bool find(valueType value);
-    ///
-    /// \brief @function showStatistic
-    /// show count of elements, load factor, count of conflicts, max count of list in conflict elements, etc
-    void showStatistic();
-    void show();
+	bool find(valueType value);
+	///
+	/// \brief @function showStatistic
+	/// show count of elements, load factor, count of conflicts, max count of list in conflict elements, etc
+	void showStatistic();
+	void show();
 
-    void setHashFunction(HashFunction *value);
+	void setHashFunction(HashFunction *value);
 
 private:
-    ///count element in hash table
-    int countOfElements;
-    int arraySize;
-    AciclicList *array;
-    int *countOfCollision;
-    int maxListSize;
-    double loadFactor;
-    void init(int size);
-    void rebuild(int size);
-    HashFunction *hashFunc;
+	///count element in hash table
+	int countOfElements;
+	int arraySize;
+	AciclicList *array;
+	int *countOfCollision;
+	int maxListSize;
+	double loadFactor;
+	void init(int size);
+	void rebuild(int size);
+	HashFunction *hashFunc;
 
 
 

@@ -4,6 +4,6 @@
 class PrimitiveHashFunction : public HashFunction
 {
 public:
-    int calculateHashFunction(std::string s, int size);
+	int calculateHashFunction(std::string s, int size);
 };
 

@@ -4,7 +4,7 @@
 class UserChoice
 {
 public:
-    void choice(HashTable *hashTable);
+	void choice(HashTable *hashTable);
 
 
 };
