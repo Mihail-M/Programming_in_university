@@ -115,6 +115,7 @@ void HashTable::rebuild(int size)
 
 void HashTable::setHashFunction(HashFunction *value)
 {
+	delete hashFunc;
 	hashFunc = value;
 }
 
