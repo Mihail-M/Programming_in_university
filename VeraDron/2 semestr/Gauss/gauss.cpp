@@ -174,6 +174,7 @@ double **Gauss::basis() {
 			for(int i = 0; i < countOfColumns - 1; i++)
 				answer[k + 1][i] = particularSolution[i];
 		}
+		delete[] free;
 		return answer;
 	}
 
@@ -182,6 +183,7 @@ double **Gauss::basis() {
 }
 
 int Gauss::getParticularSolution() {
+
 	toTriangle();
 
 	particularSolution = new double[countOfColumns - 1];
