@@ -28,10 +28,10 @@ int main() {
 	int n, m;
 	cin >> n >> m;
 	for (int i = 0; i < m; i++) {
-		int t, t1;
+		char t, t1;
 		cin >> t >> t1;
-		g[t-1].push_back(t1-1);
-		gr[t1-1].push_back(t-1);
+		g[t - 'A'].push_back(t1 - 'A');
+		gr[t1 - 'A'].push_back(t - 'A');
 	}
 
 	for (int i = 0; i < n; ++i)
