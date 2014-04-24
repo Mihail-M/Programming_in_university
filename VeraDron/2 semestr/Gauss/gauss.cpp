@@ -73,7 +73,7 @@ void Gauss::toTriangle()
 			swap (matrix[sel][i], matrix[row][i]);
 		where[col] = row;
 
-		for (int i=0; i<n; ++i)
+		for (int i = 0; i < n; ++i)
 			if (i != row) {
 				double c = matrix[i][col] / matrix[row][col];
 				for (int j = col; j <= m; ++j)

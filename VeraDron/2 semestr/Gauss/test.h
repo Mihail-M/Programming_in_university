@@ -52,7 +52,7 @@ void test() {
 
 		in1 >> n1 >> m1;
 
-		if (mas ==  nullptr)
+		if (mas == nullptr)
 		{
 			cout << pathToTest << " Ok!" << endl;
 			continue;
