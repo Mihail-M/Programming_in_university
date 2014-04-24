@@ -134,7 +134,7 @@ void Gauss::showBasis() {
 
 	for (int i = 0; i <= rank; i++)
 		delete[] answer[i];
-	delete answer;
+	delete[] answer;
 
 }
 

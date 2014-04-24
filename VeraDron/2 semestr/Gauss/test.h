@@ -16,7 +16,7 @@ bool is_ok(double **a, double **b, int n, int m) {
 }
 
 void test() {
-	for (int i = 1; i <= 5; i++)
+	for (int i = 1; i <= 7; i++)
 	{
 		string pathToTest = "test/input/test";
 		pathToTest += i +'0';
@@ -37,6 +37,7 @@ void test() {
 
 		for(int q = 0; q < n; q++)
 			delete[] mas[q];
+		delete[] mas;
 
 		n = b.getRank() + 1;
 
@@ -75,7 +76,7 @@ void test() {
 		for (int q = 0; q < n1; q++)
 			delete[] ans[q];
 
-		delete mas;
-		delete ans;
+		delete[] mas;
+		delete[] ans;
 	}
 }
