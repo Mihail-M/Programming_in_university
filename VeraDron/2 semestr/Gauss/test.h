@@ -52,10 +52,14 @@ void test() {
 
 		in1 >> n1 >> m1;
 
-		if (mas == nullptr)
+        if (mas == nullptr)
 		{
-			cout << pathToTest << " Ok!" << endl;
-			continue;
+            if (n1 == 0)
+                cout << pathToTest << " Ok!" << endl;
+            else
+                cout << pathToTest << "Failed(" << endl;
+
+            continue;
 		}
 
 		double **ans = new double*[n1];
