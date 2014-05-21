@@ -25,6 +25,7 @@ public:
 		Vehicle(mymotor_id), wheel_diam(mywheel_diam)
 	{
 	}
+protected:
 	void print_full()
 	{
 		print_motor();
@@ -41,6 +42,7 @@ public:
 		Vehicle(mymotor_id), turbine_num(myturbine_num)
 	{
 	}
+protected:
 	void print_full()
 	{
 		print_motor();
@@ -55,7 +57,7 @@ public:
 		GroundVehicle(mymotor_id, mywheel_diam), FlyingVehicle(mymotor_id, myturbine_num)
 	{
 	}
-	void print_full()
+void print_full()
 	{
 		FlyingVehicle::print_full();
 		GroundVehicle::print_full();
