@@ -62,6 +62,13 @@ int main()
 
 	for(int i = 0; i < 3; i++)
 		cout << arr[i]->area() << " ";
+
+    delete[] a;
+    delete[] b;
+    delete[] c;
+    for(int i = 0; i < 3; i++)
+        delete[] arr[i];
+    delete[] arr;
 	return 0;
 }
 
