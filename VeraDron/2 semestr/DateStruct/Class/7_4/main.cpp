@@ -16,7 +16,7 @@ public:
 	}
 };
 
-class GroundVehicle: public Vehicle
+class GroundVehicle:  public Vehicle
 {
 private:
 	double wheel_diam;
@@ -33,7 +33,7 @@ protected:
 	}
 };
 
-class FlyingVehicle: public Vehicle
+class FlyingVehicle:  public Vehicle
 {
 private:
 	int turbine_num;
@@ -43,6 +43,10 @@ public:
 	{
 	}
 protected:
+    void print_turbine() {
+        cout << "Turbine num = " << turbine_num << endl;
+    }
+
 	void print_full()
 	{
 		print_motor();
@@ -54,13 +58,14 @@ class Aircraft: public GroundVehicle, public FlyingVehicle
 {
 public:
 	Aircraft( int mymotor_id, double mywheel_diam, int myturbine_num ):
-		GroundVehicle(mymotor_id, mywheel_diam), FlyingVehicle(mymotor_id, myturbine_num)
+        GroundVehicle(mymotor_id, mywheel_diam), FlyingVehicle(mymotor_id, myturbine_num)
 	{
 	}
 void print_full()
 	{
-		FlyingVehicle::print_full();
 		GroundVehicle::print_full();
+        FlyingVehicle::print_turbine();
+
 	}
 };
 
