@@ -23,6 +23,9 @@ class B: public A{
 public:
     B(double _x1, double _x2, double _x3): A(_x1, _x2), c(A::show(_x3)) {}
     double show(double x) {
+	if (x < c)
+			
+	    x = c;
         c = A::show(x);
         return c;
     }
@@ -36,14 +39,11 @@ private:
 
 int main()
 {
-    A a(2, 3);
-    B b(2, 3, 4);
-    a.print();
-
-
-    b.show(5);
-    b.show(8);
-    b.show(2);
+    B b(2, 6, 7);
+    b.print();
+    cout << endl;
+    cout << b.show(1);
+    cout << endl;
     b.print();
     return 0;
 }
