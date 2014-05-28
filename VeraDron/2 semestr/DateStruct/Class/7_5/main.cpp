@@ -53,7 +53,7 @@ int main()
 	Shape *a = new Triangle(42 , 23);
 	Shape *b = new Square(42);
 	Shape *c = new Restangle(42, 23);
-	Shape **arr = new Shape*[3];
+    Shape **arr = new Shape*[3];
 
 	arr[0] = a;
 	arr[1] = b;
@@ -63,12 +63,11 @@ int main()
 	for(int i = 0; i < 3; i++)
 		cout << arr[i]->area() << " ";
 
-    delete[] a;
-    delete[] b;
-    delete[] c;
+
     for(int i = 0; i < 3; i++)
-        delete[] arr[i];
+        delete arr[i];
     delete[] arr;
+
 	return 0;
 }
 
