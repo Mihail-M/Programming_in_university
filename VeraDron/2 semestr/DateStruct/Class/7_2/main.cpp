@@ -100,6 +100,11 @@ int main()
 			cin >> x >> y >> d;
 			a = Bus(x, y, d, 0, 0);
 		}
+        if (command == 'f') {
+            int len;
+            cin >> len;
+            a.move(len);
+        }
 		if (command == 'l'){
 			a.rotateLeft();
 		}
