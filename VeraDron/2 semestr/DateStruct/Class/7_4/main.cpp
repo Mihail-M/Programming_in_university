@@ -16,7 +16,7 @@ public:
 	}
 };
 
-class GroundVehicle:  public Vehicle
+class GroundVehicle: virtual public Vehicle
 {
 private:
 	double wheel_diam;
@@ -33,7 +33,7 @@ protected:
 	}
 };
 
-class FlyingVehicle:  public Vehicle
+class FlyingVehicle: virtual public Vehicle
 {
 private:
 	int turbine_num;
@@ -58,7 +58,7 @@ class Aircraft: public GroundVehicle, public FlyingVehicle
 {
 public:
 	Aircraft( int mymotor_id, double mywheel_diam, int myturbine_num ):
-        GroundVehicle(mymotor_id, mywheel_diam), FlyingVehicle(mymotor_id, myturbine_num)
+        GroundVehicle(mymotor_id, mywheel_diam), FlyingVehicle(mymotor_id, myturbine_num), Vehicle(mymotor_id)
 	{
 	}
 void print_full()
@@ -73,6 +73,7 @@ int main()
 {
 	Aircraft B707(1234, 12.3, 10);
 	B707.print_full();
+    B707.print_motor();
 
 	return 0;
 }
