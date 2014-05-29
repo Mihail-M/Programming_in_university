@@ -37,14 +37,13 @@ int main()
     for (int i = 0; i < m; i++){
         for (int j = mas[i].t - 1; j >= 0; j--){
             if (result[j] == 0) {
-
                 result[j] = mas[i].ind;
-                if (j <= n)
-                    sum += mas[i].c;
+                sum += mas[i].c;
                 break;
             }
         }
     }
+
     cout << sum << endl;
     for(int i = 0; i < n; i++)
         cout << result[i] << " ";
