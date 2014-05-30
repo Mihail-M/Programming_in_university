@@ -2,31 +2,13 @@
 #include <iostream>
 #include <queue>
 
-
+using namespace std;
 
 Tree::Tree(): root(nullptr)
 {
 
 }
 
-
-int Tree::get_height(Tree::Node *p)
-{
-	int left = 0;
-	int right = 0;
-
-	if (p == nullptr)
-		return 0;
-
-	if (p->left != nullptr)
-		left = get_height(p->left);
-	if (p->right != nullptr)
-		right = get_height(p->right);
-
-	int height = std::max(left, right);
-
-	return height + 1;
-}
 
 Tree::Node *Tree::find(int x)
 {
@@ -55,15 +37,41 @@ Tree::Node *Tree::maximum(Tree::Node *p)
 	return p;
 }
 
-Tree::Node *Tree::predecessor(const Tree::Node *p)
+Tree::Node *Tree::predecessor(Node *node)
 {
-	return predecessor(p, root);
+    if (!node)
+        return NULL;
+    if (node->left)
+        return maximum(node->left);
+    else
+    {
+        Node *parent = node;
+        while (parent && parent->value >= node->value)
+            parent = parent->parent;
+        return parent;
+    }
 }
 
-Tree::Node *Tree::successor(const Tree::Node *p)
+Tree::Node *Tree::successor(Tree::Node *node)
 {
-	return successor(p, root);
+    if (!node)
+        return NULL;
+    if (node->right)
+        return minimum(node->right);
+    else
+    {
+        Node *parent = node;
+        while (parent && parent->value <= node->value)
+            parent = parent->parent;
+        return parent;
+    }
+}
 
+int Tree::getHeight(Tree::Node *node)
+{
+    if (node != nullptr)
+        return node->height;
+    else return 0;
 }
 
 void Tree::in_order_traversal()
@@ -101,46 +109,6 @@ void Tree::breadth_first_traversal()
 	}
 }
 
-Tree::Node *Tree::predecessor(const Tree::Node *p, Node *current)
-{
-	if (current == nullptr || p == nullptr)
-		return nullptr;
-	static Node *max = new Node(-1000);
-
-	if (current->value < p->value) {
-
-		if (max->value < current->value)
-			max = current;
-
-		predecessor(p, current->right);
-	}
-	if (current->value >= p->value) {
-		predecessor(p, current->left);
-	}
-	return max;
-
-}
-
-Tree::Node *Tree::successor(const Tree::Node *p, Tree::Node *current)
-{
-	if (current == nullptr || p == nullptr)
-		return nullptr;
-	static Node *min = new Node(1e10);
-
-	if (current->value > p->value) {
-
-		if (min->value > current->value)
-			min = current;
-
-		successor(p, current->left);
-	}
-	if (current->value <= p->value) {
-		successor(p, current->right);
-	}
-	return min;
-
-}
-
 Tree::Node *Tree::find(Tree::Node *p, int x)
 {
 	if (p == nullptr)
@@ -152,8 +120,9 @@ Tree::Node *Tree::find(Tree::Node *p, int x)
 	if (p->value > x)
 		find(p->left, x);
 	else
-		find(p->right, x);
+        find(p->right, x);
 }
+
 
 void Tree::in_order_traversal(Tree::Node *p)
 {
@@ -181,4 +150,11 @@ void Tree::post_order_traversal(Tree::Node *p)
 	pre_order_traversal(p->left);
 	pre_order_traversal(p->right);
 	std::cout << p->value << " ";
+}
+
+Tree::Node *Tree::updateHeight(Tree::Node *node)
+{
+    if (node)
+        node->height = max(getHeight(node->left), getHeight(node->right)) + 1;
+    return node;
 }

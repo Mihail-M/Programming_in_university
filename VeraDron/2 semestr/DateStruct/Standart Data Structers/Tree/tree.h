@@ -7,11 +7,15 @@ public:
 
 		Node *left;
 		Node *right;
-		int value;
+        Node *parent;
+        int value;
+        int height;
 
-		Node(int x) {
+        Node(int x, Node *_parent = nullptr) {
 			left = nullptr;
 			right = nullptr;
+            height = 0;
+            parent = _parent;
 			value = x;
 		}
 
@@ -21,10 +25,7 @@ public:
 	///insert node with value x into tree
 	virtual void insert(int x) = 0;
 	///insert node with value x from tree
-	virtual void remove(Node *&p) = 0;
-
-	///heigh of subtree
-	int get_height(Node *p);
+    virtual void remove(Node *p) = 0;
 
 	///
 	/// \brief find
@@ -49,9 +50,10 @@ public:
 	Node* maximum(Node *p);
 
 
-	Node* predecessor(const Node *p);
-	Node* successor(const Node *p);
+    Node* predecessor(Node *node);
+    Node* successor(Node *node);
 
+    int getHeight(Node *node);
 	void in_order_traversal();
 	void pre_order_traversal();
 	void post_order_traversal();
@@ -61,13 +63,12 @@ public:
 
 protected:
 
-	Node *predecessor(const Node *p, Node *current);
-	Node *successor(const Node *p, Node *current);
 
 	Node *find(Node *p, int x);
 
 	void in_order_traversal(Node *p);
 	void pre_order_traversal(Node *p);
 	void post_order_traversal(Node *p);
+    Node *updateHeight(Node *node);
 
 };
