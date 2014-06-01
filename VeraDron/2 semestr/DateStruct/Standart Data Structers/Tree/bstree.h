@@ -13,6 +13,9 @@ private:
 	int countOfElements;
 	void insert(int x, Node *&node);
 	void deleteTree(Node *temp);
+    BSTree(const BSTree &);
+    BSTree &operator = (const BSTree &);
 
 };
+
 

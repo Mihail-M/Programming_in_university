@@ -21,7 +21,7 @@ public:
 
 	};
 	Tree();
-
+    virtual ~Tree(){};
 	///insert node with value x into tree
 	virtual void insert(int x) = 0;
 	///insert node with value x from tree

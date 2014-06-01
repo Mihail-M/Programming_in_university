@@ -54,9 +54,9 @@ Tree::Node *Tree::predecessor(Node *node)
 
 Tree::Node *Tree::successor(Tree::Node *node)
 {
-    if (!node)
-        return NULL;
-    if (node->right)
+    if (node == nullptr)
+        return nullptr;
+    if (node->right != nullptr)
         return minimum(node->right);
     else
     {
@@ -107,6 +107,7 @@ void Tree::breadth_first_traversal()
 		if (to->right != nullptr)
 			q.push(to->right);
 	}
+    cout << endl;
 }
 
 Tree::Node *Tree::find(Tree::Node *p, int x)
