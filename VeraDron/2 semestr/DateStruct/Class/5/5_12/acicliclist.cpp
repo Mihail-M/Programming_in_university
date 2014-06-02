@@ -83,7 +83,7 @@ List::iterator AciclicList::insert(List::iterator position, const int &x)
 
 List::iterator AciclicList::erase(List::iterator position)
 {
-    ListElement * elem = position.operator->();
+    ListElement * elem = position.operator ->();
     elem->next->prev = elem->prev;
     elem->prev->next = elem->next;
     position = iterator(elem);
@@ -95,9 +95,3 @@ List::iterator AciclicList::erase(List::iterator position)
 }
 
 
-
-void AciclicList::pushInit(List::ListElement *newElem)
-{
-    head = nullptr;
-    last = nullptr;
-}

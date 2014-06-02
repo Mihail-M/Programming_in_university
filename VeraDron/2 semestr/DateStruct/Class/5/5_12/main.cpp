@@ -25,11 +25,10 @@ int main()
     }
 
     cout << list.size() << endl;
-
-    for (List::iterator it = --(list.end()); it != list.begin(); --it)
+    List::iterator it;
+    for (it = --(list.end()); it != list.begin()->prev; --it)
         cout << *it << " ";
-
-
+    cout << endl;
     int max = *(list.begin());
     for (List::iterator it = list.begin(); it != list.end(); ++it)
             max = std::max(*it, max);

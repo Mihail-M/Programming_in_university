@@ -26,6 +26,8 @@ void List::clear()
     while(countOfElements != 0) {
         popBack();
     }
+    delete head;
+    delete last;
 
 }
 
