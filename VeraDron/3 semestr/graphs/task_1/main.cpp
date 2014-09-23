@@ -36,7 +36,7 @@ int main()
     point2.first--;
 
     q.push(point1);
-    used[point1.first][point2.second] = 1;
+    used[point1.first][point1.second] = 1;
 
     pair <int, int> temp = point1;
     while (!q.empty())
@@ -52,12 +52,20 @@ int main()
 
         if (temp.first == point2.first && temp.second == point2.second)
         {
-            cout << d[point2.first][point2.second];
+            cout << d[point2.first][point2.second] << endl;
             break;
         }
 
         temp = q.front();
         q.pop();
     }
+
+    vector <pair<int, int> > inp;
+    for (pair <int, int> i = point2; i != make_pair(-1, -1); i = p[i.first][i.second])
+        inp.push_back(i);
+
+    for(int i = inp.size() - 1; i >= 0; i--)
+            cout << inp[i].first + 1 << " " << inp[i].second + 1 << endl;
+
     return 0;
 }
