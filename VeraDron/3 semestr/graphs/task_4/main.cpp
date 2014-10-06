@@ -10,8 +10,7 @@ void find_bridges (int from, int parent,
                    , vector <pair <int,int> > &ans)
 {
 	used[from] = true;
-	tin[from]= timer;
-	fup[from] = timer++;
+	tin[from] = fup[from] = timer++;
 
 	for (size_t i = 0; i < g[from].size(); i++)
     {
@@ -39,11 +38,13 @@ int main()
 
     int n;
     cin >> n;
-    int used[n], tin[n], fup[n];
-    memset(used, 0, n);
-    memset(tin, 0, n);
-    memset(fup, 0, n);
-
+    int *used = new int[n];
+    int *tin = new int[n];
+    int *fup = new int[n];
+    memset(used, 0, sizeof(int)*n);
+    memset(tin, 0, sizeof(int)*n);
+    memset(fup, 0, sizeof(int)*n);
+    cout << tin[3];
     vector <vector <int> > g;
     for(int i = 0; i < n; i++)
     {
@@ -58,9 +59,8 @@ int main()
         }
         g.push_back(temp);
     }
-
-    vector <pair <int, int> > ans;
-	for (int i=0; i<= n; i++)
+    vector <pair <int, int > > ans;
+	for (int i = 0; i < n; i++)
 		if (!used[i])
 			find_bridges (i, -42, used, tin, fup, 0, g , ans);
 
