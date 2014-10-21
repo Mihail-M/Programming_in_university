@@ -3,6 +3,7 @@
 #include <cstring>
 
 using namespace std;
+bool *inParent;
 
 void find_bridges (int from, int parent,
                    int *used , int *tin, int *fup, int timer
@@ -15,8 +16,11 @@ void find_bridges (int from, int parent,
 	for (size_t i = 0; i < g[from].size(); i++)
     {
 		int to = g[from][i];
-		if (to == parent)
+		if (to == parent && !inParent[from]){
+            inParent[from] = true;
             continue;
+        }
+
 		if (used[to])
         {
 			fup[from] = min (fup[from], tin[to]);
@@ -41,10 +45,12 @@ int main()
     int *used = new int[n];
     int *tin = new int[n];
     int *fup = new int[n];
+    inParent = new bool[n];
     memset(used, 0, sizeof(int)*n);
     memset(tin, 0, sizeof(int)*n);
     memset(fup, 0, sizeof(int)*n);
-    cout << tin[3];
+    memset(inParent, 0, sizeof(bool)*n);
+
     vector <vector <int> > g;
     for(int i = 0; i < n; i++)
     {
@@ -67,6 +73,9 @@ int main()
     cout << ans.size() << endl;
     for (int i = 0; i < ans.size(); i++)
         cout << ans[i].first << " " << ans[i].second << endl;
-
+    delete[] tin;
+    delete[] used;
+    delete[] fup;
+    delete[] inParent;
     return 0;
 }
