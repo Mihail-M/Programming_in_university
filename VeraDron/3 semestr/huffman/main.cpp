@@ -3,68 +3,35 @@
 #include <queue>
 #include <cmath>
 
+#include "node.h"
+
 using namespace std;
-string ss = "";
-map <char, int> count;
-struct node {
-    node *left;
-    node *right;
-    int count;
-    char value;
-    node(char v, int c) {
-        left = nullptr;
-        right = nullptr;
-        count = c;
-        value = v;
-    }
-    node(node *a, node *b){
-        left = a;
-        right = b;
-        count = a->count + b->count;
-        value = '0';
-    }
-};
-void delTree(node *t) {
-    if(t->left != nullptr) {
-        delTree(t->left);
-    }
-    if(t->right != nullptr) {
-        delTree(t->right);
-    }
-    if (t != nullptr)
-        delete t;
-
-}
-
-node* merge(node *a, node *b) {
-    node *newRoot = new node(a, b);
-    return newRoot;
-}
-
+string bincode = "";
 double huffmanCoeff = 0;
+
 void order(node *p)
 {
     if (p == nullptr)
         return;
     if (p->left != nullptr)
-        ss += "0";
+        bincode += "0";
     order(p->left);
+
+    if (p->right != nullptr)
+        bincode += "1";
+    order(p->right);
 
     if (p->right == nullptr && p->left == nullptr)
     {
         if (p->value != ' ')
-            cout <<  p->value << ": " << ss << endl;
+            cout <<  p->value << ": " << bincode << endl;
         else
-            cout << "space: " << ss << endl;
-        huffmanCoeff += ss.size() * p->count;
+            cout << "space: " << bincode << endl;
+        huffmanCoeff += bincode.size() * p->count;
     }
 
-    if (p->right != nullptr)
-        ss += "1";
-    order(p->right);
-
-    if (ss.size() != 0)
-        ss.erase(ss.size() - 1);
+    if (bincode.size() != 0)
+        bincode.erase(bincode.size() - 1);
 }
 
 struct LessThanByCount
@@ -79,6 +46,7 @@ struct LessThanByCount
 
 int main()
 {
+    map <char, int> count;
     string pattern;
     getline(cin ,pattern);
 
