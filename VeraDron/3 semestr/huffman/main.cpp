@@ -91,7 +91,7 @@ int main()
         allsym.push(make_pair((*it).first, (*it).second));
     }
 
-    double patternCoeff = (floor(log2(allsym.size() - 0.5)+ 1));
+    double patternCoeff = (ceil(log2(allsym.size())));
 
     int size = allsym.size();
 
