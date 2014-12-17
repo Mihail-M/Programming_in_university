@@ -22,7 +22,7 @@ void FFT (vector<complex<double> > & a, bool invert) {
 
 	double f = 2 * M_PI / n * (invert ? -1 : 1);
 
-	complex<double> w (1),  wn (cos(ang), sin(ang));
+	complex<double> w (1),  wn (cos(f), sin(f));
 	for (int i=0; i<n/2; ++i) {
 		a[i] = a0[i] + w * a1[i];
 		a[i + n/2] = a0[i] - w * a1[i];
