@@ -23,6 +23,7 @@ int finite_state_machine_for_if(int position, int &index) {
     }
     else return -1;
 }
+
 int finite_state_machine_for_onecomment(int position, int index) {
     string s = code[index];
     if (s[position] == '/')
@@ -50,16 +51,16 @@ int finite_state_machine_for_multiplycomment(int position, int &index) {
             cout << "Comment Error" << endl;
             return -2;
         }
-        for (int i = position + 2; i < s.size()-1; i++)
-            if (s[i] == '*' && s[i-1] == '/')
+        for (int i = position + 2; i < s.size() - 1; i++)
+            if (s[i] == '*' && s[i+1] == '/')
             {
                 return i+1;
             }
         for (int i = index+1; i < code.size(); i++){
 
             s = code[i];
-            for (int j = 0; j < s.size()-1; j++)
-                if (s[j] == '*' && s[j+1] == '/')
+            for (int j = 0; j < s.size() - 1; j++)
+                if (s[j] == '*' && s[j + 1] == '/')
                 {
                     index = i;
                     return j + 2;
@@ -157,7 +158,7 @@ int finite_state_machine_for_num(int position, int index, string &object) {
                     state = 2;
                 }
                 else
-                    if (!is_separatedElement(s[i])){
+                    if (!is_separatedElement(s[i]) && s[i] != '/'){
                         cout << "Wrong Number Line--- " << index << endl;
                         return -2;
                     }
@@ -183,14 +184,13 @@ int finite_state_machine_for_num(int position, int index, string &object) {
                 object += s[i];
             }
             else
-                if (s[i] != ' ' && s[i] != ';' && s[i] != '=' && s[i] != '<'){
+                if (!is_separatedElement(s[i]) && s[i] != '/'){
 
                     cout << "Wrong Number Line--- " << index << endl;
                     return -2;
                 }
                 else
                     return i;
-
         }
     }
 
@@ -232,7 +232,7 @@ int finite_state_machine_for_id(int position, int index, string &object) {
                     state = 2;
                 }
                 else
-                    if (s[i] != ' ' && s[i] != ';' &&  s[i] != '=' && s[i] != '<'){
+                    if (!is_separatedElement(s[i]) && s[i] != '/'){
                         cout << "Wrong ID Line--- " << index << endl;
                         return -2;
                     }
@@ -458,10 +458,6 @@ int main()
 
     for (int i = 0; i < tokens.size(); i++)
         cout << tokens[i].first << " " << tokens[i].second << endl;
-
-
-
-
 
     return 0;
 }
