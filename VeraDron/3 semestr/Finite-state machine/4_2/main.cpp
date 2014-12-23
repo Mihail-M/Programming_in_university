@@ -16,7 +16,7 @@ int finite_state_machine_for_if(int position, int &index) {
     string s = code[index];
     if (s[position] == 'i')
     {
-        if (s[position+1] =='f'){
+        if (s[position+1] =='1f'){
             return position + 2 ;
         }
         else return -1;
@@ -288,27 +288,19 @@ int finite_state_machine_for_relation(int position, int index, string &object) {
 }
 
 int finite_state_machine_for_assignment(int position, int index) {
-    int state = 0;
-    string s = code[index];
-    if (s[position] == '=')
-        if (position-1 >= 0 && (isalpha(s[position - 1]) || isdigit(s[position - 1])
-                                || s[position-1] == '<'
-                                || s[position-1] == ' '
-                                || s[position-1] == ';'))
+
+    if (code[index][position] == '=')
             return position+1;
-        else {cout << "nejdan " << s[position-1] << " Line--- " << index;
-            return -2;
-        }
-
-
-
     return -1;
 }
+
 int finite_state_machine_for_space(int position, int index) {
     if (code[index][position] == ' ')
         return position + 1;
     else return -1;
 }
+
+//нужен для проверки принадлежит ли символ алфавиту
 int finite_state_machine_for_rabish(int position, int index) {
     if ((is_separatedElement( code[index][position])
          || isalpha(code[index][position])
