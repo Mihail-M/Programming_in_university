@@ -1,75 +1,62 @@
 #include <iostream>
-#include <cstdio>
+#include <vector>
+#include <fstream>
 #include <queue>
+#include <limits.h>
 using namespace std;
 
-const int inf = (int)(1e+9);
 
-int n, m, c[1050][1050], f[1050][1050]
-        , push[1050], parent[1050];
-
-bool used[1050];
-
-void init(int s) {
-    for(int i = 1; i <= n; i++) {
-        used[i] = parent[i] = push[i] = 0;
-    }
-    push[s] = inf;
-    used[s] = 1;
-    parent[s] = s;
-}
-
-bool bfs(int s, int t) {
-    int k;
-    init(s);
-    queue <int> q;
-    q.push(s);
-
-    while(q.size() > 0 && !used[t]) {
-        k = q.front();
-        q.pop();
-        for(int i = 1; i <= n; i++)
-            if(!used[i] && (c[k][i] - f[k][i] > 0)) {
-                used[i] = 1;
-                push[i] = min(push[k], c[k][i] - f[k][i]);
-                parent[i] = k;
-                q.push(i);
+bool bfs(vector<vector<int> >& capacities, int s, int f, vector<int>& parents, int n) {
+    queue<int> queue;
+    vector<bool> visited(n, false);
+    parents[s] = -1;
+    visited[s] = true;
+    queue.push(s);
+    while (!queue.empty()){
+        int from = queue.front();
+        queue.pop();
+        for (int i = 0; i < n; i++){
+            if (!visited[i] && capacities[from][i] > 0) {
+                queue.push(i);
+                parents[i] = from;
+                visited[i] = true;
             }
+        }
     }
-    return used[t];
+    return visited[f];
 }
 
-int max_flow(int s, int t) {
-    int ans = 0;
-
-    while(bfs(s, t)) {
-        int add = push[t];
-        int v = parent[t];
-        int u = t;
-
-        while(v != u) {
-            f[v][u] += add;
-            f[u][v] -= add;
-            u = v;
-            v = parent[u];
+int edmonds_karp(vector<vector<int> >& capacities, int s, int f, int n){
+    int u, v;
+    vector<int> parents(n, -1);
+    int max_flow = 0;
+    while (bfs(capacities, s, f, parents, n)){
+        int path_flow = INT_MAX;
+        for (v = f; v != s; v = parents[v]){
+            u = parents[v];
+            path_flow = min(path_flow, capacities[u][v]);
         }
-        ans += add;
-    }
 
-    return ans;
+        for (v = f; v != s; v = parents[v]) {
+            u = parents[v];
+            capacities[u][v] -= path_flow;
+            capacities[v][u] += path_flow;
+        }
+        max_flow += path_flow;
+    }
+    return max_flow;
 }
 
 int main() {
-
-    int x, y, w;
-
+    int n, m;
     cin >> n >> m;
+    vector<vector<int> > gr(n, vector<int>(n, 0));
 
-    for(int i = 0; i < m; i++) {
-        cin >> x >> y >> w;
-        c[x][y] = w;
+    for (int i = 0; i < m; i++) {
+        int from, to, cost;
+        cin >> from >> to >> cost;
+        gr[from - 1][to - 1] = cost;
     }
-
-    cout << max_flow(1, n);
+    cout << edmonds_karp(gr, 0, n - 1, n);
     return 0;
 }
