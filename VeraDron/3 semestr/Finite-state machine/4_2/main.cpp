@@ -16,7 +16,7 @@ int finite_state_machine_for_if(int position, int &index) {
     string s = code[index];
     if (s[position] == 'i')
     {
-        if (s[position+1] =='1f'){
+        if (s[position+1] =='f'){
             return position + 2 ;
         }
         else return -1;
@@ -26,6 +26,7 @@ int finite_state_machine_for_if(int position, int &index) {
 
 int finite_state_machine_for_onecomment(int position, int index) {
     string s = code[index];
+
     if (s[position] == '/')
     {
         if (s[position + 1] != '/' && s[position+1] != '*'){
@@ -54,7 +55,7 @@ int finite_state_machine_for_multiplycomment(int position, int &index) {
         for (int i = position + 2; i < s.size() - 1; i++)
             if (s[i] == '*' && s[i+1] == '/')
             {
-                return i+1;
+                return i+2;
             }
         for (int i = index+1; i < code.size(); i++){
 
@@ -85,53 +86,67 @@ int finite_state_machine_for_separator(int position, int index) {
 int finite_state_machine_for_type(int position, int index) {
     int state = 0;
     string s = code[index];
-
+    s += "$";
     for (int i = position; i < s.size(); i++) {
-
         if (state == 0) {
             if (s[i] == 'f' && (i - 1 <= 0 || s[i-1] == ' ' || s[i-1] == ';'))
                 state = 1;
+            else return -1;
             continue;
+
         }
         else
             if (state == 1) {
                 if (s[i] == 'l')
                     state = 2;
+                else return -1;
+
                 continue;
             }
             else
                 if (state == 2) {
                     if (s[i] == 'o')
                         state = 3;
+                    else return -1;
+
                     continue;
                 }
                 else
                     if (state == 3) {
                         if (s[i] == 'a')
                             state = 4;
+                        else return -1;
+
                         continue;
                     }
                     else
                         if (state == 4) {
                             if (s[i] == 't')
                                 state = 5;
+                            else return -1;
+
                             continue;
                         }
                         else
                             if (state == 5) {
-                                if (s[i] == ';' || s[i] == ' ' || i == s.size())
+                                if (is_separatedElement(s[i]) || i == s.size() - 1)
                                     return i;
+                                else return -1;
+
                                 continue;
+
                             }
     }
+
     return -1;
 }
 
 int finite_state_machine_for_num(int position, int index, string &object) {
     int state = 0;
     string s = code[index];
-
+    s += "$";
     for (int i = position; i < s.size(); i++) {
+        if (i == s.size() - 1  && s.size() != position + 1) return s.size();
         if (state == 0) {
             if (isdigit(s[i]) ){
                 if (i - 1 >= 0){
@@ -193,15 +208,15 @@ int finite_state_machine_for_num(int position, int index, string &object) {
                     return i;
         }
     }
-
     return -1;
 }
-
 int finite_state_machine_for_id(int position, int index, string &object) {
     int state = 0;
     string s = code[index];
-
+    s += "$";
     for (int i = position; i < s.size(); i++) {
+        if (i == s.size() - 1  && s.size() != position + 1) return s.size();
+
         if (state == 0) {
             if (isalpha(s[i])) {
                 if (i - 1>= 0){
@@ -265,9 +280,11 @@ int finite_state_machine_for_id(int position, int index, string &object) {
 
     return -1;
 }
+
 int finite_state_machine_for_relation(int position, int index, string &object) {
     int state = 0;
     string s = code[index];
+    s += "$";
 
     if (state == 0) {
         if (s[position] == '<') {
@@ -290,7 +307,7 @@ int finite_state_machine_for_relation(int position, int index, string &object) {
 int finite_state_machine_for_assignment(int position, int index) {
 
     if (code[index][position] == '=')
-            return position+1;
+        return position+1;
     return -1;
 }
 
@@ -307,7 +324,8 @@ int finite_state_machine_for_rabish(int position, int index) {
          || isdigit(code[index][position])
          || code[index][position] == '.') || (int)code[index][position] == 0)
     {
-        return position;}
+        return position;
+    }
     else {
 
         cout << "Error: unexpected symbol - " << code[index][position]  << " Line ---" << index;
