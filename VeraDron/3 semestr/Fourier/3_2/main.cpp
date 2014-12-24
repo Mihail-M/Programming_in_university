@@ -61,13 +61,14 @@ int main() {
     for (; pObjWavFile->ifMoreDataAvailable(); ++count)
     {
         data[count] = 0;
-        for (int i = 0; i < num_channels; ++i) {
+        for (int i = 0; i < num_channels; i++) {
             data[count] += (short)pObjWavFile->readCurrentInput();
         }
         data[count] /= num_channels;
     }
 
     double end = count / sample_rate;
+
     complex<double> theBestMaxAmpl = complex<double>(0);
     int theBestMaxFreq = 0;
 
@@ -99,7 +100,7 @@ int main() {
         }
 
         for (int i = 0; i < N; i++)
-            if (abs(ampl[i]) < abs(ampl[maxFreq]) * 0.25)
+            if (abs(ampl[i]) < abs(ampl[maxFreq]) * 0.239)
                 ampl[i] = complex<double>(0.0);
 
         RDFT(N, start, ampl, result);
@@ -112,7 +113,7 @@ int main() {
     int endFILE = end * sample_rate;
     double startFILE = 0.0;
 
-    writeWAVData<short>("example3.wav", result,
+    writeWAVData<short>("example3withoutnoisy.wav", result,
                         (endFILE - startFILE) * sizeof(short), sample_rate, 1);
 
     delete [] result;
