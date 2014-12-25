@@ -2,38 +2,49 @@
 #include <vector>
 #include <complex>
 #include <cmath>
+#include <algorithm>
 
 using namespace std;
 
-void FFT (vector<complex<double> > & a, bool invert)
+void FFT (vector<complex<double> > & number, bool revert)
 {
-    int n = a.size();
-    if (n == 1)
-        return;
+    int n = number.size();
+    if (n == 1) return;
 
-    vector<complex<double> > a0 (n/2),  a1 (n/2);
+    vector<complex<double> > number1(n/2),  number2(n/2);
 
-    for (int i=0, j=0; i<n; i+=2, ++j)
+    for (int i = 0, j = 0; i < n; i += 2, ++j)
     {
-        a0[j] = a[i];
-        a1[j] = a[i+1];
+        number1[j] = number[i];
+        number2[j] = number[i+1];
     }
 
-    FFT(a0, invert);
-    FFT(a1, invert);
+    FFT(number1, revert);
+    FFT(number2, revert);
 
-    double f = 2 * M_PI / n * (invert ? -1 : 1);
 
-    complex<double> w (1),  wn (cos(f), sin(f));
-    for (int i=0; i<n/2; ++i)
+    double f;
+    if ( revert == 1)
     {
-        a[i] = a0[i] + w * a1[i];
-        a[i + n/2] = a0[i] - w * a1[i];
-        if (invert)
+        f = -2*M_PI / n;
+    }
+    else {
+        f = 2*M_PI / n;
+    }
+
+    complex<double> w (1),
+      wn (cos(f), sin(f));
+    for (int i = 0; i < n/2; i++)
+    {
+        number[i] = number1[i] + w * number2[i];
+        number[i + n/2] = number1[i] - w * number2[i];
+
+        if (revert == 1)
         {
-            a[i] /= 2;
-            a[i+n/2] /= 2;
+            number[i] /= 2;
+            number[i + n/2] /= 2;
         }
+
         w *= wn;
     }
 }
@@ -83,9 +94,6 @@ void fun(char G, string &a, string &b, vector <int> &shift)
     multiply(A, B, C);
     shift[0] += C[N - 1];
 
-    for (int i = 0; i <C.size(); i++)
-        cout << C[i];
-    cout <<endl;
     for (int i = 0; i < N - 1; i++)
         shift[i + 1] += C[i] + C[i + N];
 }
@@ -103,6 +111,7 @@ int main()
     fun('G', A, B, shift);
 
     int max = 0;
+
 
     for (int i = 0; i < n; i++)
         if (shift[i] > shift[max])
