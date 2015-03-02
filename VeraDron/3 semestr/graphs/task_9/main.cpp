@@ -98,7 +98,7 @@ int edmonds_karp(vector<vector<int> >& capacities, vector<vector<int> >& flow, i
     return max_flow;
 }
 
-
+//баг здесь!!!
 int min_cost_max_flow(vector<vector<int> >& capacities,vector<vector<int> >& cost , int s, int f, int n)
 {
     vector< vector<int> > flow(n, vector<int>(n, 0));
